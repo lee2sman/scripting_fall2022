@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <title>Week 2 notes</title>
+  <link rel='stylesheet' href='main.css'>
+</head>
+<body>
+<h1 id="week-2">Week 2</h1>
+<h2 id="todays-plan">Today’s plan</h2>
+<ul>
+<li>Workshop: ‘classless’ drop-in stylesheets
+<ul>
+<li>plus customizations</li>
+<li>Quickstart: Create a stylesheet for Week 2 class notes</li>
+</ul></li>
+<li>Important: File paths</li>
+<li>Purchase web server space</li>
+<li>Positioning things with CSS Flexbox</li>
+</ul>
+<h2 id="css-frameworks">CSS frameworks</h2>
+<p>A CSS framework is a library of CSS you can use to more rapidly create a website based on standards. They are often built with good defaults, are generally mobile-responsive, and are focused around clear UI patterns. The most famous is CSS Bootstrap.</p>
+<p>Some frameworks specialize in customizability. Others are drop-in. Most require CSS knowledge to be able to tailor the framework to match your site design goals and your individual assets of photos, text and other content.</p>
+<p>PROs:</p>
+<ul>
+<li>Great design you can just ‘drop-in’</li>
+<li>The little details are often thought-through and meticulously implemented</li>
+<li>cross-browser idiosyncracies have been worked out</li>
+<li>standardization makes it easier for a user to understand how to navigate your webpage</li>
+</ul>
+<p>CONs:</p>
+<ul>
+<li>the design can look generic or overly product-y</li>
+<li>can be difficult to figure out how to customize</li>
+<li>may use design systems or code you have less or no previous experience in, such as CSS pre-processers</li>
+</ul>
+<h3 id="classless-frameworks">“Classless” frameworks</h3>
+<p>Classless CSS refers to a framework that does not require you to add css classes and ID’s to your own HTML page and should work <em>out of the box</em> without customization. The upside is an instantly-readable website. The downside is that these sites can look generic and minimal.</p>
+<ul>
+<li>new.css - <a href="https://newcss.net/">demo</a> - includes usage instructions</li>
+<li>Retro - <a href="https://markdowncss.github.io/retro/">demo</a></li>
+<li>Tufte CSS - <a href="https://edwardtufte.github.io/tufte-css/">demo</a> and <a href="https://github.com/edwardtufte/tufte-css">code</a> - <em>note this one requires you download a folder with fonts in it as well</em></li>
+</ul>
+<p>Huge list of classless css frameworks <a href="https://github.com/dbohdan/classless-css">here</a>. Or do an internet search.</p>
+<p><strong>It is okay (and normal) to use multiple stylesheets! One semi-custom approach would be to use a classless framework, and then add your own stylesheet after to customize to your own style and needs.</strong></p>
+<h2 id="workshop-creating-a-stylesheet-for-week-2">Workshop: Creating a stylesheet for week 2</h2>
+<p>Create a stylesheet for these class notes. You can work solo or in a pair.</p>
+<p>Your stylesheet should have styling for body, h1, h2, h3, img, p, code, and any other tags you wish to add.</p>
+<p>Before you start, come up with a design plan.</p>
+<h2 id="file-system-file-paths">File System / File paths</h2>
+<p>File structure. File system. File paths. I know, you’re yawning already. But if you understand the basics it will save you mistakes or problems later.</p>
+<p>Here’s the basics:</p>
+<p>Your website must <em>sit</em> somewhere. You should build it in a folder, which we’ll call a directory. When you are finished coding, you will upload it to a server. The name should avoid using spaces: it’s better to use hypens <code>-</code> or underscores <code>_</code>. (An example: <code>fridge_photos</code>). The folder holding all of your files and sub-folders is called the <em>root directory</em>. In shorthand, this is written as <code>/</code>, the forward slash.</p>
+<p>Inside your root directory it is considered best practice to place an <code>index.html</code> file. Since the index file is a default, if someone visits your domain root (for example if you buy <em>fridgephotos.com</em>) then the browser will actually serve <code>fridgephotos.com/index.html</code>, though it will just display <code>fridgephotos.com</code>in the address bar.</p>
+<p>In addition, you should have an external css page and javascript files here, if it’s a simple site. For a more complex site, you may have a folder of css and a folder of javascript. You may also have a folder of images or other assets</p>
+<p><img src="images/file_structure_example.png" alt="basic file structure example" /><br />
+Example basic file structure</p>
+<p>With the above basic file structure your index.html could look like this:</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Fridge Photos&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;style.css&quot; &gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;My photos&lt;/h1&gt;
+    &lt;img src=&quot;images/photo1.jpg&quot;&gt;
+    &lt;img src=&quot;images/photo2.jpg&quot;&gt;
+    &lt;img src=&quot;images/photo3.jpg&quot;&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h3 id="more-advanced-file-structure-for-bigger-sites">More advanced file structure (for bigger sites)</h3>
+<p>If you have a website with a number of pages, you may have tried adding more html pages to your root folder, with names like <code>contact.html</code>, <code>bio.html</code> or even <code>page2.html</code>. That is not considered best practice. The proper approach is make a separate directory inside your root directory for each page. And each of these will have their own index.html file. This way someone can visit <code>fridgephotos.com/bio</code> instead of <code>fridgephotos.com/bio.html</code>.</p>
+<p>View of the bio bio folder:</p>
+<p><img src="images/bio_subdirectory.png" alt="Example file system for a larger site" /><br />
+The bio directory has its own index.html page</p>
+<p>View of the <code>js</code> javascript file folder:</p>
+<p><img src="images/js_subdirectory.png" alt="Example file system for larger site showing js folder" /><br />
+You may have multiple files in a js directory</p>
+<h4 id="example">Example</h4>
+<p>Based on the above file structure for a more advanced site.</p>
+<p>Let’s say we are editing the bio page. We will have a bio photo, and we need to use two scripts, jquery.js and our own main.js on the page.</p>
+<p>Remember that starting with the forward slash means starting in our root folder. So the following file <code>/bio/index.html</code> means the index.html file we are working on is inside a bio folder which is inside our fridge_photos folder!</p>
+<p><strong>/bio/index.html</strong>:</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+  &lt;html&gt;
+    &lt;head&gt;
+      &lt;title&gt;My Fridge Bio&lt;/title&gt;
+
+      &lt;script src=&quot;/js/jquery.js&quot;&gt;&lt;/script&gt;
+      &lt;script src=&quot;/js/main.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+      &lt;h1&gt;My bio&lt;/h1&gt;
+      &lt;img src=&quot;/images/bio_photo.jpg&quot;&gt;
+    &lt;/body&gt;
+  &lt;/html&gt;</code></pre>
+<p>For this page, we are loading the jquery.js file from the js folder located in the root directory since the file name in that line starts with <code>/</code>. The next line loads the main.js file in the same folder.</p>
+<p>Check out the line of code with the image file above. A different way you could display the exact same image is:</p>
+<pre><code>&lt;img src=&quot;../images/bio_photo.jpg&quot;&gt;</code></pre>
+<p>This says to go up one folder (to the parent of the current folder holding the index.html file you are editing in the bio directory), then go in the images folder there and display the bio_photo.jpg image file.</p>
+<h3 id="file-structure-cheatsheet">File structure cheatsheet</h3>
+<pre><code>directory = a folder
+. = current folder
+.. = parent of current folder
+/ = root directory
+
+examples:
+/images/photo1.jpg = photo1.jpg inside the images folder inside the root directory
+
+../assets/head.jpg = the parent of this current folder has an assets folder in it with an image file head.jpg located inside that
+</code></pre>
+<h2 id="purchase-web-server-space">Purchase Web Server space</h2>
+<blockquote>
+<p>Web space is a folder in your name that is mapped to a virtual Web server, and which is published on the Internet. You will need to create a file named index.html, and then you can view the file online at http://Students.Purchase.edu/YourFirst.YourLastName/ (not a real page, example only). Web Publishing is used in various classes, but you can also use it for any materials you want to publish on the Internet. Please note that the web pages you store here are accessible to the public, so do not post anything illegal, or anything which you do not own or have the rights to publish.</p>
+</blockquote>
+<p><a href="https://purchase.sharepoint.com/:u:/r/CTS/Knowledge%20Base%20External/File%20Space(Filezilla),%20Web%20Space(Web%20Page).aspx?csf=1&web=1&e=0jNFMN" alt="CTS Knowledgebase">CTS Knowledgebase with info on server space and FileZilla</a></p>
+<p>Download <a href="https://filezilla-project.org/">FileZilla</a> <strong>CLIENT</strong>.</p>
+<p>HOST name: students.purchase.edu<br />
+FTPES – FTP over explicit TLS/SSL Logon type: ‘Ask for password’ (or Normal)<br />
+User: your campus username Transfer settings: Passive</p>
+<p><em>Note: Back up your web server. Don’t assume it will always be there! Servers crash and lose things.</em></p>
+<figure>
+<img src="assets/filezilla.png" alt="" /><figcaption>FileZilla screenshot</figcaption>
+</figure>
+<h3 id="positioning-things-with-css-flexbox">Positioning things with CSS Flexbox</h3>
+<figure>
+<img src="images/flexbox.png" alt="" /><figcaption>flexbox intro</figcaption>
+</figure>
+<p>HTML:</p>
+<pre><code> &lt;div class=&quot;flex-container&quot;&gt;
+  &lt;div&gt;ITEM1&lt;/div&gt;
+  &lt;div&gt;ITEM2&lt;/div&gt;
+  &lt;div&gt;ITEM3&lt;/div&gt;
+  &lt;div&gt;ITEM4&lt;/div&gt;
+&lt;/div&gt; </code></pre>
+<p>CSS:</p>
+<pre><code>.flex-container {
+  display: flex;
+}</code></pre>
+<p>With flexbox, you can use these CSS selectors:</p>
+<ul>
+<li>flex-direction</li>
+<li>flex-wrap</li>
+<li>flex-flow</li>
+<li>justify-content</li>
+<li>align-items</li>
+<li>align-content</li>
+</ul>
+<h4 id="flex-direction">Flex direction</h4>
+<p>Change the direction your items flow. Instead of left to right (the default), let’s flow down in a column. Just add <code>flex-direction: column;</code> to the css of the container.</p>
+<pre><code>.flex-container {
+  display: flex;
+  flex-direction: column;
+}</code></pre>
+<figure>
+<img src="images/flexdirection.png" alt="" /><figcaption>flex-direction</figcaption>
+</figure>
+<h3 id="flex-wrap">Flex wrap</h3>
+<pre><code>.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}</code></pre>
+<p>alternatively: <code>flex-wrap: nowrap;</code></p>
+<figure>
+<img src="images/flexwrap.png" alt="" /><figcaption>flex wrap</figcaption>
+</figure>
+<h3 id="justify-content---for-spacing">Justify-content - For SPACING</h3>
+<p>Use this to align items</p>
+<pre><code>.flex-container {
+  display: flex;
+  justify-content: center;
+}</code></pre>
+<figure>
+<img src="images/flexjustifycontent.png" alt="" /><figcaption>flexbox justify-content</figcaption>
+</figure>
+<h3 id="many-other-ways-to-justify-content">Many Other ways to justify-content</h3>
+<pre><code> justify-content: center;
+ justify-content: flex-start;
+ justify-content: flex-end;
+ justify-content: space-around;
+ justify-content: space-between;</code></pre>
+<p><em>align-items is used for aligning</em> items!</p>
+<p>Play with these <a href="https://www.w3schools.com/csS/css3_flexbox.asp">here</a></p>
+<h2 id="css-resources">CSS Resources</h2>
+<ul>
+<li>Definitive introduction: <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">Complete Guide to CSS Flexbox</a></li>
+<li>also good: CSS Flexbox <a href="https://www.w3schools.com/csS/css3_flexbox.asp">on w3schools</a></li>
+<li><a href="https://flexboxfroggy.com/">Flexbox Froggy</a><br />
+</li>
+<li><a href="http://www.flexboxdefense.com/">Flexbox Defense</a> tower defense game</li>
+</ul>
+<h3 id="resources-for-mobile-responsive-design">Resources for Mobile-Responsive Design</h3>
+<ul>
+<li><a href="https://www.w3schools.com/Css/css_rwd_intro.asp">Designing For The Best Experience For All Users</a></li>
+<li><a href="https://www.w3schools.com/Css/css_rwd_mediaqueries.asp">CSS Media Queries</a></li>
+<li><a href="https://css-tricks.com/fun-viewport-units/">Viewport Units</a></li>
+</ul>
+<h1 id="homework">Homework</h1>
+<ol type="1">
+<li>Continue work on your class homepage. See week 1 homework for more info.</li>
+<li>Refine your personal site assigned from week 1 homework. Make improvements to the CSS. If you have previous web experience, <strong>make your site mobile-responsive</strong>. Upload your finished site to your student server space. Keep in mind file structure and URL structure. Your website should have a name that’s easy to navigate, like http://faculty.purchase.edu/lee.tusman/personal-map</li>
+</ol>
+<p>You will be evaluated by:</p>
+<ul>
+<li>Execution
+<ul>
+<li>Does the website work?</li>
+<li>Is it uploaded to the college server space?</li>
+<li>Is the code fully functional?</li>
+<li>Does the URL and file structure make sense and is easy to navigate?</li>
+<li>For those with previous classes in web design: Is it mobile-responsive?</li>
+</ul></li>
+<li>Concept
+<ul>
+<li>Does the concept make sense?</li>
+<li>Is it a novel idea?</li>
+<li>Is it a compelling design that suits the content?</li>
+</ul></li>
+</ul>
+</body>
+</html>
