@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Week 3 notes</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel='stylesheet' href='sakura-earthly.css'>
+</head>
+<body>
+<h1 id="week-3">Week 3</h1>
+<h2 id="agenda">Agenda</h2>
+<ul>
+<li>File structure cheatsheet</li>
+<li>Flexbox for positioning</li>
+<li>Responsive Design with Media Queries</li>
+<li>Intro to JavaScript</li>
+<li>The Document Object Model (DOM)</li>
+<li>Collaboratively build a class website CSS switcher</li>
+<li>In-class time to work on your class homepage</li>
+</ul>
+<h2 id="file-structure-cheatsheet">File structure cheatsheet</h2>
+<pre><code>directory = a folder
+. = current folder
+.. = parent of current folder
+/ = root directory
+
+examples:
+/images/photo1.jpg = photo1.jpg inside the images folder inside the root directory
+
+../assets/head.jpg = the parent of this current folder has an assets folder in it with an image file head.jpg located inside that
+</code></pre>
+<h2 id="positioning-things-with-css-flexbox">Positioning things with CSS Flexbox</h2>
+<figure>
+<img src="../assets/flexbox.png" alt="" /><figcaption>flexbox intro</figcaption>
+</figure>
+<p>HTML:</p>
+<pre><code> &lt;div class=&quot;flex-container&quot;&gt;
+  &lt;div&gt;ITEM1&lt;/div&gt;
+  &lt;div&gt;ITEM2&lt;/div&gt;
+  &lt;div&gt;ITEM3&lt;/div&gt;
+  &lt;div&gt;ITEM4&lt;/div&gt;
+&lt;/div&gt; </code></pre>
+<p>CSS:</p>
+<pre><code>.flex-container {
+  display: flex;
+}</code></pre>
+<p>With flexbox, you can use these CSS selectors:</p>
+<ul>
+<li>flex-direction</li>
+<li>flex-wrap</li>
+<li>flex-flow</li>
+<li>justify-content</li>
+<li>align-items</li>
+<li>align-content</li>
+</ul>
+<h4 id="flex-direction">Flex direction</h4>
+<p>Change the direction your items flow. Instead of left to right (the default), let’s flow down in a column. Just add <code>flex-direction: column;</code> to the css of the container.</p>
+<pre><code>.flex-container {
+  display: flex;
+  flex-direction: column;
+}</code></pre>
+<figure>
+<img src="../assets/flexdirection.png" alt="" /><figcaption>flex-direction</figcaption>
+</figure>
+<h4 id="flex-wrap">Flex wrap</h4>
+<pre><code>.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}</code></pre>
+<p>alternatively: <code>flex-wrap: nowrap;</code></p>
+<figure>
+<img src="../assets/flexwrap.png" alt="" /><figcaption>flex wrap</figcaption>
+</figure>
+<h4 id="justify-content---for-spacing">Justify-content - For SPACING</h4>
+<p>Use this to align items</p>
+<pre><code>.flex-container {
+  display: flex;
+  justify-content: center;
+}</code></pre>
+<figure>
+<img src="../assets/flexjustifycontent.png" alt="" /><figcaption>flexbox justify-content</figcaption>
+</figure>
+<h5 id="many-other-ways-to-justify-content">Many Other ways to justify-content</h5>
+<pre><code> justify-content: center;
+ justify-content: flex-start;
+ justify-content: flex-end;
+ justify-content: space-around;
+ justify-content: space-between;</code></pre>
+<p><em>align-items is used for aligning</em> items!</p>
+<p>Play with these <a href="https://www.w3schools.com/csS/css3_flexbox.asp">here</a></p>
+<h4 id="css-resources">CSS Resources</h4>
+<ul>
+<li>Definitive introduction: <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">Complete Guide to CSS Flexbox</a></li>
+<li>also good: CSS Flexbox <a href="https://www.w3schools.com/csS/css3_flexbox.asp">on w3schools</a></li>
+</ul>
+<h5 id="fun-learning-resources">Fun learning resources:</h5>
+<ul>
+<li><a href="https://flexboxfroggy.com/">Flexbox Froggy</a><br />
+</li>
+<li><a href="http://www.flexboxdefense.com/">Flexbox Defense</a> tower defense game</li>
+</ul>
+<h2 id="mobile-responsive-design">Mobile-Responsive Design</h2>
+<p>Our goal is often to make a website that works across browsers and devices, on many sized screens.</p>
+<p>We do this by designing with mobile-responsiveness in mind.</p>
+<p>In the head section we add a meta tag that explains to the browser how to set the page’s dimensions and scale.</p>
+<pre><code> &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt; </code></pre>
+<p>For responsive pictures, we often set a maximum width:</p>
+<pre><code>img {
+  max-width:100%;
+  height:auto;
+}</code></pre>
+<p>Text size can be set with viewport units (vw for viewport width, or vh for viewport height). These act like percentages of the page.</p>
+<pre><code>h1 {
+  font-size:10vw;
+}</code></pre>
+<p>Lastly, we use media queries to alter our CSS on smaller/larger screens.</p>
+<pre><code>body {
+  width: 60%;
+}
+
+/* Use a media query to add a breakpoint at 800px: */
+@media screen and (max-width: 800px) {
+  body {
+    width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+  }
+}</code></pre>
+<h3 id="resources">Resources</h3>
+<ul>
+<li><a href="https://www.w3schools.com/Css/css_rwd_intro.asp">Designing For The Best Experience For All Users</a></li>
+<li><a href="https://www.w3schools.com/Css/css_rwd_mediaqueries.asp">CSS Media Queries</a></li>
+<li><a href="https://css-tricks.com/fun-viewport-units/">Viewport Units</a></li>
+</ul>
+<h2 id="javascript">Javascript!</h2>
+<p>HTML is for content. CSS is for style. JavaScript is for interaction.</p>
+<figure>
+<img src="../assets/cake.png" alt="" /><figcaption>HTML + CSS + Javascript cake</figcaption>
+</figure>
+<p>Javascript as a name was selected because the Java language was popular at the time. They are not otherwise related. Over time Javascript was adopted by all browsers though each browser/engine may have its own implementation. Standards for JavaScript are maintained by an international committee and the standard is known as EcmaScript.</p>
+<p>Javascript is a multiparadigm language, meaning there are many approaches to coding with it.</p>
+<p>Javascript is <em>weakly</em> typed, meaning that the language does not have built in safety checks for memory and variable types. It is evaluated <em>just in time</em>. In contrast to Processing, for example, which is compiled (and checked for errors) before running.</p>
+<p>Javascript as a language has evolved significantly over time. New language features have been implemented and adopted at varying times by different browsers. Ecmascript2015 aka ES6 brought significant changes to syntax for classes, types, functions and loops, among other changes.</p>
+<p>Javascript includes support for working with text, arrays, dates, regular expressions, and basic manipulation of the DOM.</p>
+<h3 id="what-makes-javascript-special">What makes Javascript special?</h3>
+<p>Technically, Javascript is a scripting language in a host environment, which means that many applications or host environments can provide their own systems for accessing and executing it. Javascript can be used in web browsers but also in Adobe products, system software, embedded computers, databases, and other environments. It is increasingly used as the language that underlies the internet of things, so that tens of millions of devices can be accessed and controlled via Javascript.</p>
+<h3 id="where-to-use-javascript">Where to use Javascript</h3>
+<ul>
+<li>In your web browser’s console</li>
+<li>Between <code>&lt;script&gt;</code> and <code>&lt;/script&gt;</code> in your HTML page</li>
+<li>In an external file called by (for example) <code>&lt;script src="script.js"&gt;&lt;/script&gt;</code> on your HTML page</li>
+<li>And in the commandline/Terminal using Node.js</li>
+</ul>
+<h4 id="advantages-of-external-scripts">Advantages of External scripts</h4>
+<ul>
+<li>It separates HTML and code</li>
+<li>It makes HTML and JavaScript easier to read and maintain</li>
+<li>Cached JavaScript files can speed up page loads</li>
+<li>you can load several</li>
+</ul>
+<pre><code>&lt;script src=&quot;myScript1.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;myScript2.js&quot;&gt;&lt;/script&gt;</code></pre>
+<h4 id="accessing-the-browser-console">Accessing the browser console</h4>
+<h6 id="chrome-console">Chrome console</h6>
+<p><img src="../assets/chrome-console.png" alt="accessing the browser console - Chrome" /><br />
+Accessing the console in Chrome</p>
+<h6 id="firefox-console">Firefox console</h6>
+<figure>
+<img src="../assets/firefox-console.png" alt="" /><figcaption>accessing the browser console - Firefox</figcaption>
+</figure>
+<h6 id="safari-console-2-parts">Safari console (2 parts!)</h6>
+<p>In Safari, you must first go to File &gt; Preferences and choose the Advanced tab and turn on the Developer tools. This will add a Developer Menu.</p>
+<figure>
+<img src="../assets/safari-developer-tools.png" alt="" /><figcaption>accessing Developer Tools in Safari</figcaption>
+</figure>
+<p>Now you can access the console.</p>
+<figure>
+<img src="../assets/safari-console.png" alt="" /><figcaption>accessing the console in Safari</figcaption>
+</figure>
+<h3 id="hello-world-in-javascript">Hello World in Javascript</h3>
+<p>Normally, you’ll have your Javascript code acting on your website, handling events (the mouse, page load, etc) or responding to input for example.</p>
+<p>This isn’t the normal use of JavaScript, but as a beginner it’s helpful to know that JavaScript can produce some output very simply, in a few different ways:</p>
+<ul>
+<li>Writing into an HTML element, using innerHTML. <a href="https://www.w3schools.com/js/tryit.asp?filename=tryjs_output_dom">Example</a></li>
+<li>Writing into the HTML output using document.write(). <a href="https://www.w3schools.com/js/tryit.asp?filename=tryjs_output_write">Example</a></li>
+<li>Writing into an alert box, using window.alert(). <a href="https://www.w3schools.com/js/tryit.asp?filename=tryjs_output_write_over">Example</a></li>
+<li>Writing into the browser console, using console.log(). <a href="https://www.w3schools.com/js/tryit.asp?filename=tryjs_output_alert">Example</a></li>
+</ul>
+<p>Hello World is typically the first program you write in a programming language when you are testing it out. It tells you whether you can get a basic program to run. A typical <em>Hello World</em> program in Javascript could use any of the 4 above methods.</p>
+<h3 id="entering-javascript-directly-in-the-console">Entering Javascript directly in the console</h3>
+<p>Open the Javascript web console. Here you see error messages and warnings from the site you are viewing. You can also enter code directly and press enter and it will execute.</p>
+<pre><code>console.log(&#39;Hello World&#39;);</code></pre>
+<p>This will print <code>Hello World</code> as output.</p>
+<p>console.log looks really ugly. If it helps, think of it as saying <em>print out</em>.</p>
+<h3 id="placing-javascript-within-script-tags">Placing Javascript within script tags</h3>
+<p>Leave your console open.</p>
+<p>Go back to your index.html file or make a new one.</p>
+<p>In your page somewhere add the opening and closing script tags, and put some basic Javascript code in there to print text on the console.</p>
+<pre><code>&lt;script&gt;
+  console.log(&#39;This will print out in the console&#39;);
+&lt;/script&gt;</code></pre>
+<p>Now reload the page in the browser and look at the console. The statement should be printed there.</p>
+<h3 id="using-an-external-javascript-file">Using an external Javascript file</h3>
+<p>Just like we do with an external css stylesheet it’s best practice to use an external Javascript file that you call in your html file. Most of the time you will want to put this script near the end of your page right before the closing <code>&lt;/body&gt;</code> tag. We do this so our page content loads (text, images…) before our script runs so there is something to see if our site loads slowly.</p>
+<h6 id="example">Example</h6>
+<p>index.html:</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Testing the console&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello World&lt;/h1&gt;
+    &lt;script src=&quot;main.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>main.js:</p>
+<pre><code>console.log(&#39;Hi. From an external script&#39;);</code></pre>
+<p>Check the web console to confirm the text from main.js printed in the console.</p>
+<h2 id="javascript-syntax">Javascript Syntax</h2>
+<p>Javascript code starts executing instructions in order.</p>
+<h4 id="comments">Comments</h4>
+<p>Comments are notes to yourself or other programmers. The browser skips it. In addition to writing helpful notes for when you reopen your software after a break, it can be helpful to use commenting to turn on and off different lines of code.</p>
+<pre><code>//this is a comment</code></pre>
+<pre><code>/* 
+this is
+a multi line
+comment. I don&#39;t use them very much
+*/</code></pre>
+<h4 id="semicolons">Semicolons</h4>
+<p>Semicolons <code>;</code> are generally used to end executable statements. You can even use them to have multiple statements on a single line of code. The semicolons are optional when each line has a single statement, but it’s good practice to use them anyway.</p>
+<pre><code>var message = &quot;some text&quot;;
+console.log(message);</code></pre>
+<h3 id="data-types">Data Types</h3>
+<p>Variables are used to store data for later. Javascript is a <em>weakly</em> typed language. You don’t need to declare a variable’s type and there is no error checking.</p>
+<p>JavaScript variables can hold many data types: numbers, strings, objects and more (including functions, which we’ll get to later). Unlike other languages, you can use <code>var</code> to declare all variable types. Note that you don’t specify an integer nor float.</p>
+<p>Examples</p>
+<pre><code>var age = 21;   // Number
+var weight = 145.3; // Number
+var name = &quot;Cardi B&quot;;  // String
+var person  = {firstName:&quot;Dwayne&quot;,
+ middleName:&quot;The Rock&quot;,
+ lastName:&quot;Johnson&quot;};    // Object</code></pre>
+<p>Now that those variables are set, we can use them.</p>
+<pre><code>console.log(&quot;Quiet, I&#39;m listening to &quot;+name);</code></pre>
+<p>Notice how I broke up <em>The Rock’s</em> name above to make it easier for me to read. <strong>Javascript collapses all spaces</strong>, lines, tabs that are bigger than a space into a single space.</p>
+<ul>
+<li>Numbers - You do not need to specify an integer or float the way you do in many other languages.</li>
+<li>Strings - a sequence of Unicode characters</li>
+</ul>
+<h6 id="some-other-values">Some other values</h6>
+<ul>
+<li>null - a non-value</li>
+<li>undefined - not yet initialized</li>
+<li>boolean - <code>true</code> or <code>false</code></li>
+</ul>
+<h4 id="operations">Operations</h4>
+<ul>
+<li>Boolean operations such as <code>&amp;&amp;</code> (logical and), <code>||</code> (logical or), and <code>!</code> (logical not)</li>
+</ul>
+<h4 id="more-about-variables">More about Variables</h4>
+<ul>
+<li><em>let</em> is the new <em>var</em> - <code>let</code> has <em>block scope</em> while <code>var</code> does not. Simply put, many people have transitioned to using <code>let</code> instead of var and for your code it doesn’t matter which you pick to use.</li>
+<li><code>const</code> is a variable whose value will not change! Reassigning its value will throw an error. It also has block scope.</li>
+</ul>
+<h2 id="syntax">Syntax</h2>
+<ul>
+<li>lines end with a ;</li>
+<li>Flow order (top to bottom)</li>
+<li>comments start with //</li>
+<li>increment with <code>++</code> and decrement with <code>--</code></li>
+<li>add strings together with <code>txt = string1 + " " + string2;</code></li>
+</ul>
+<h2 id="functions-are-code-blocks">Functions are code blocks</h2>
+<ul>
+<li>they break your code into manageable chunks</li>
+<li>named functions can be called</li>
+<li>anonymous functions used once</li>
+</ul>
+<pre><code>function myFunction() {
+    var contents = $(&#39;#contents&#39;);
+
+    $(&#39;#demo1&#39;).html(&quot;Hello World&quot;);
+}</code></pre>
+<h3 id="control-structures">Control Structures</h3>
+<ul>
+<li><code>if</code>, <code>else if</code>, <code>else</code></li>
+</ul>
+<p>Basic if statement</p>
+<pre><code>if (name === &#39;Belcalis Marlenis Almanzar&#39;){
+    console.log(name+&quot;, also known as Cardi B.&quot;);
+}</code></pre>
+<p>More complex if statements</p>
+<pre><code>if (name === &#39;Quavo&#39;){
+  console.log(&#39;Right on&#39;);
+} else if (name === &#39;Offset&#39;){
+  console.log(&#39;Totally&#39;);
+} else if (name === &#39;Takeoff&#39;){
+  console.log(&#39;Okay&#39;);
+} else {
+  console.log(&#39;Hold on, who are you?&#39;);
+}</code></pre>
+<h3 id="operators">Operators</h3>
+<ul>
+<li><code>==</code> equal to</li>
+<li><code>!=</code> not equal</li>
+<li><code>&gt;</code> greater than</li>
+<li><code>&lt;</code> less than</li>
+<li><code>&gt;=</code> greater than or equal to</li>
+<li><code>&lt;=</code> less than or equal to</li>
+</ul>
+<h3 id="logic">Logic</h3>
+<ul>
+<li>AND <code>&amp;&amp;</code></li>
+<li>OR <code>||</code></li>
+<li>NOT <code>!</code></li>
+</ul>
+<h3 id="more-javascript">More JavaScript</h3>
+<h4 id="arrays">Arrays</h4>
+<pre><code>students = [
+  &#39;Jonathan&#39;,&#39;Joseph&#39;,&#39;Erinn&#39;,&#39;Danylo&#39;,&#39;Anthony&#39;,&#39;Emmie&#39;,&#39;Victoria&#39;,&#39;Katherine&#39;,&#39;Mafe&#39;,&#39;Zachary&#39;,&#39;Emory&#39;,&#39;Keeshawn&#39;,&#39;Ana&#39;,&#39;Wadiah&#39;,&#39;Vlad&#39;];
+]</code></pre>
+<p>You can access an array by specifying the index.</p>
+<pre><code>  console.log(students[0]); //prints out &#39;Jonathan&#39;</code></pre>
+<p>Arrays have length</p>
+<pre><code>console.log(students.length);</code></pre>
+<p>The length is the total number of entries. It’s common to access or do something with the contents using a loop.</p>
+<pre><code>console.log(&#39;The Students are: &#39;);
+
+for (let i=0; i &lt; students.length; i++){
+    console.log(students[i]);
+}</code></pre>
+<p>Note: The last entry to an array is not <code>arrayName[arrayName.length];</code> Remember that if we have an array with 5 entries, we will have an index 0, 1, 2, 3, 4. The last entry is therefore <code>arrayName[arrayName.length-1];</code></p>
+<h4 id="for-loops">For loops</h4>
+<pre><code>var genres = [&#39;Bebop&#39;, &#39;Rocksteady&#39;, &#39;Dub&#39;, &#39;Ska&#39;];
+
+//looping through an array
+for (let i = 0; i &lt; genres.length; i++) {
+        console.log(genres[i]);
+    }
+    </code></pre>
+<h2 id="the-dom">The DOM</h2>
+<p>Now that we understand the basics of Javascript, let’s consider what it can do:</p>
+<ul>
+<li>JavaScript can change all the HTML elements in the page</li>
+<li>JavaScript can change all the HTML attributes in the page</li>
+<li>JavaScript can change all the CSS styles in the page</li>
+<li>JavaScript can remove existing HTML elements and attributes</li>
+<li>JavaScript can add new HTML elements and attributes</li>
+<li>JavaScript can react to all existing HTML events in the page</li>
+<li>JavaScript can create new HTML events in the page</li>
+</ul>
+<p>The HTML DOM is a standard for how to get, change, add, or delete HTML elements.</p>
+<p>DOM stands for Document Object Model.</p>
+<p>HTML elements are objects.<br />
+Their properties can be changed.<br />
+We have different methods for accessing these.<br />
+We can have our HTML change based off specific events (a page opening, resizing, mouse pressed, etc.)</p>
+<figure>
+<img src="../assets/DOM.gif" alt="" /><figcaption>The DOM</figcaption>
+</figure>
+<p>The DOM works like a tree, with nodes branching off that below. We can work on these nodes, remove them, add to them, change their properties, etc.</p>
+<h2 id="in-class-collaborative-project-building-a-student-css-switcher">In-class collaborative project: Building a student CSS switcher</h2>
+<p>Method:</p>
+<p>Each student will build a stylesheet for the class website and upload it.</p>
+<p>We’ll collaboratively code a switcher in JavaScript that cycles through the students’ css pages, and changes our website’s css.</p>
+<h2 id="homework">Homework</h2>
+<h2 id="read">READ</h2>
+<p>Read through the sections on <a href="https://www.w3schools.com/Css/css_rwd_intro.asp">What is responsive web design</a> - multiple pages <a href="https://www.w3schools.com/Css/css_rwd_mediaqueries.asp">CSS Media Queries</a> <a href="https://css-tricks.com/fun-viewport-units/">Fun with viewport units</a> article</p>
+<h2 id="code">CODE</h2>
+<p>Finish your landing page for your class assignments. See week1 for the full hw description. <strong>Make your website mobile-responsive!</strong></p>
+<ul>
+<li>Finish your HTML and CSS!</li>
+<li>You are not expected to include javascript, but you’re welcome to start with that if you like.</li>
+<li>Review how your site looks on different browsers. Fix the design to work on different browsers and sites.</li>
+</ul>
+</body>
+</html>
