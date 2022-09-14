@@ -378,35 +378,24 @@ We can have our HTML change based off specific events (a page opening, resizing,
   <li>getElementsByTagName()</li>
   <li>getElementsByClassName</li>
 </ul>
+<p>By default querySelector picks the first of any specific tag on the webpage. In the example below we store it in the variable grabbedText.</p>
+<p>Then in the same example, we grab <strong>all</strong> paragraphs on the page. Each paragraph will be an element in an array called allText</p>
 <pre><code>
-<!DOCTYPE html>
-<html>
-  <head>
-    js test
-  </head>
-  <body>
-    <p>I am some text</p>
-    <p>I'm some middle text</p>
-    <p>I am also some text</p>
-    <script>
-      //by default querySelector picks the first of any specific tag on the webpage and stores it in grabbedText
-      let grabbedText = document.querySelector("p");
+let grabbedText = document.querySelector("p");
 
-      //below, we're grabbing ALL paragraphs on the page. Each paragraph will be an element in an array called allText
-      let allText = document.querySelectorAll("p");
+let allText = document.querySelectorAll("p");
 
-      //alert("first paragraph is "+grabbedText.innerText);
-      //alert("first paragraph is "+allText[0].innerText);
-      //alert("last paragraph is "+allText[allText.length-1].innerText);
-
-    </script>
-  </body>
-</html>
+alert("first paragraph is "+grabbedText.innerText);
+alert("first paragraph is "+allText[0].innerText);
+alert("last paragraph is "+allText[allText.length-1].innerText);
 </code></pre>
 <h2 id="in-class-collaborative-project-building-a-student-css-switcher">In-class collaborative project: Building a student CSS switcher</h2>
 <p>Method:</p>
 <p>Each student will build a stylesheet for the class website and upload it.</p>
 <p>We’ll collaboratively code a switcher in JavaScript that cycles through the students’ css pages, and changes our website’s css.</p>
+<pre><code>
+document.querySelector("link").href = 'alternate.css';
+</code></pre>
 <h2 id="homework">Homework</h2>
 <h2 id="read">READ</h2>
 <p>Read through the sections on <a href="https://www.w3schools.com/Css/css_rwd_intro.asp">What is responsive web design</a> - multiple pages <a href="https://www.w3schools.com/Css/css_rwd_mediaqueries.asp">CSS Media Queries</a> <a href="https://css-tricks.com/fun-viewport-units/">Fun with viewport units</a> article</p>
