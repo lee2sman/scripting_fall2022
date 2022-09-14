@@ -366,6 +366,43 @@ We can have our HTML change based off specific events (a page opening, resizing,
 <img src="../assets/DOM.gif" alt="" /><figcaption>The DOM</figcaption>
 </figure>
 <p>The DOM works like a tree, with nodes branching off that below. We can work on these nodes, remove them, add to them, change their properties, etc.</p>
+
+<h2 id="JavaScript Selectors">JavaScript Selectors</h2>
+<p>Much of the time, we use JavaScript to manipulate parts of our html page or CSS. For example, clicking a button changes the color on an element, hides an element, or opens a menu.</p>
+
+<p>The most common way to do this is with QuerySeletor methods or GetElement Methods:</p>
+<ul>
+  <li>querySelector()</li>
+  <li>querySelectorAll()</li>
+  <li>getElementById()</li>
+  <li>getElementsByTagName()</li>
+  <li>getElementsByClassName</li>
+</ul>
+<pre><code>
+<!DOCTYPE html>
+<html>
+  <head>
+    js test
+  </head>
+  <body>
+    <p>I am some text</p>
+    <p>I'm some middle text</p>
+    <p>I am also some text</p>
+    <script>
+      //by default querySelector picks the first of any specific tag on the webpage and stores it in grabbedText
+      let grabbedText = document.querySelector("p");
+
+      //below, we're grabbing ALL paragraphs on the page. Each paragraph will be an element in an array called allText
+      let allText = document.querySelectorAll("p");
+
+      alert("first paragraph is "+grabbedText.innerText);
+      alert("first paragraph is "+allText[0].innerText);
+      alert("last paragraph is "+allText[allText.length-1].innerText);
+
+    </script>
+  </body>
+</html>
+</code></pre>
 <h2 id="in-class-collaborative-project-building-a-student-css-switcher">In-class collaborative project: Building a student CSS switcher</h2>
 <p>Method:</p>
 <p>Each student will build a stylesheet for the class website and upload it.</p>
