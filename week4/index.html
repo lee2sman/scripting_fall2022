@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Week 4</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel='stylesheet' href='main.css'>
+</head>
+<body>
+<h2 id="agenda">Agenda</h2>
+<ul>
+<li>Quiz</li>
+<li>JS practice with arrays</li>
+<li>In-class collaborative project: Building a student CSS switcher</li>
+<li>JS to get or set CSS</li>
+<li>Anonymous functions</li>
+<li>Debugging! - using inspect and the javascript console</li>
+<li>“Subversive” Website</li>
+</ul>
+<h2 id="quiz">Quiz</h2>
+<p>What is HTML for?</p>
+<p>What is CSS for?</p>
+<p>What is JavaScript for?</p>
+<p>What is the DOM?</p>
+<h2 id="js-practice">JS Practice</h2>
+<p>A review of arrays.</p>
+<p>What’s an array?</p>
+<p>A collection of values of the same type.</p>
+<pre><code>let departments = [&quot;Anthropology&quot;,&quot;Economics&quot;,&quot;Math and Computer Science&quot;,&quot;Global Black Studies&quot;,&quot;Sociology&quot;,&quot;Graphic Design&quot;,&quot;Art and Design&quot;,&quot;Music&quot;,&quot;Dance&quot;,&quot;Screenwriting&quot;];
+
+//first one
+console.log(departments[0]);
+
+//last one
+//we subtract one because count an array starting at 0 even though our &#39;length&#39; doesn&#39;t take this into account
+console.log(departments[departments.length-1]);</code></pre>
+<h2 id="in-class-collaborative-project-building-a-student-css-switcher">In-class collaborative project: Building a student CSS switcher</h2>
+<p>Method:</p>
+<p>Each student will build a stylesheet for the class website and upload it.</p>
+<p>We’ll collaboratively code a switcher in JavaScript that cycles through the students’ css pages, and changes our website’s css.</p>
+<pre><code>let students = [&quot;Bobby Teenager&quot;, &quot;Ellen Doe&quot;, &quot;Jerome Boggs&quot;, &quot;Philipe Philips&quot;, &quot;Cher Smith&quot;];
+
+function pickAStudent(students){
+  let whichNum = Math.floor(Math.random()*students.length);
+  let student = students[whichNum];
+  
+  return student;
+}
+
+let whichStudent = pickAStudent(students);
+console.log(&quot;Selected student: &quot;,whichStudent);</code></pre>
+<h3 id="anonymous-functions">Anonymous Functions</h3>
+<ol type="1">
+<li>Anonymous functions are created at <em>runtime</em></li>
+<li>They don’t have a name</li>
+</ol>
+<p>Example of a named (<strong>not anonymous</strong> function):</p>
+<pre><code>function flyToTheMoon(){
+      alert(&quot;Zoom! Zoom! Zoom!&quot;);
+}
+
+flyToTheMoon();</code></pre>
+<p>Anonymously</p>
+<pre><code>function() {
+   alert(&quot;Zoom! Zoom! Zoom!&quot;);
+}</code></pre>
+<p>So we have an anonymous function stored as flyToTheMoon now. How do we run it if it doesn’t have a name?</p>
+<p>Let’s say we have a timer that will run something at a specific time. For example, 4 seconds after the website loads we want an alert to pop up.</p>
+<h2 id="queryselectors-practice">querySelectors practice</h2>
+<p>This is a review from last week:</p>
+<p><em>querySelector</em> to select a single element by CSS selector.</p>
+<p><em>querySelectorAll</em> to select all matching elements by CSS selector.</p>
+<h2 id="debugging">Debugging</h2>
+<p>We can use the Inspect tool/browser tools to view the DOM, applied CSS, and click through to the JavaScript console, and the responsive browser mode.</p>
+<p>The rendered DOM code will appear to show you how your JavaScript and CSS was applied to your HTML.</p>
+<p>The applied CSS tool will allow you to select HTML elements and see what CSS was applied. You can click the checkbox to turn on and off certain CSS attributes.</p>
+<p>The JavaScript console is useful for seeing error messages, warnings and debugging statements such as <code>console.log()</code>.</p>
+<p>The responsive browser mode serves as an emulator to let you preview a website as if you are using a device such as a phone or tablet to see how it would appear.</p>
+<h2 id="activity-subversive-website">Activity: Subversive Website</h2>
+<h4 id="warm-up-claridryl-website">Warm-up Claridryl website</h4>
+<ul>
+<li><a href="https://web.archive.org/web/20180102111443/http://www.adultswim.com/promotions/claridryl">Claridryl</a> website on Wayback machine</li>
+</ul>
+<h3 id="create-a-bizarresubversive-jquery-site">Create a bizarre/subversive jQuery site</h3>
+<p>Watch <a href="https://www.youtube.com/watch?v=JI8AMRbqY6w">They Live</a></p>
+<p>Create a fake (possibly a corporate) webpage that appears to be about one thing. Use generic language, stock images, etc.</p>
+<p>Use an event (clicking a button, a timer, or some other method) to trigger a change in the website that makes changes to subvert the initial site. This could be a secret hacker ring, aliens, another civilization, or some group attempting to bring that corporation down, or perhaps show the company’s actually true intentions. Use your imagination to make this wild and far out. You may want to plan and sketch this first in a notebook. You may struggle turning the idea into your head into reality via your code. Write down problems you can’t solve in your notebook. Look for solutions. Take breaks!</p>
+<p>You have two weeks to do this assignment!</p>
+<p>For next week: - What is your concept? - What is your corporation or entity’s name? - What is your method? Will you use a framework or handcode or…? - Mock up the pages in a notebook or sketch on computer - Start working on it. Create HTML, CSS to demonstrate next week.</p>
+<p>Method:</p>
+<ol type="1">
+<li>Decide your fake corporate entity. Pick a name. Pick fonts to use, colors, design schemes. You may want to use CSS Grid or Flexbox.</li>
+<li>Go to <a href="https://www.pexels.com/public-domain-images/">Pexels</a> or <a href="https://pixabay.com/">Pixabay</a> public domain images and search for an image (or multiple images to use). You can download them and use them freely.</li>
+</ol>
+<p>When finished, link to your project’s site from your class website you made last week.</p>
+</body>
+</html>
