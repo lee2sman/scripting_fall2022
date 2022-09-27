@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Week 5 notes</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+<link rel="stylesheet" href="../assets/classless.css">
+</head>
+<body>
+<p>week 5</p>
+<h1 id="bookmarklets-and-extensions">Bookmarklets and Extensions</h1>
+<h3 id="todays-overview">Today’s Overview</h3>
+<ul>
+<li>Bookmarklets</li>
+<li>Extensions</li>
+<li>Complete your Subversive Website</li>
+</ul>
+<h2 id="video-dark-patterns">Video: Dark Patterns</h2>
+<p>Please watch this.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kxkrdLI6e6M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="bookmarklets">Bookmarklets</h2>
+<h4 id="what-is-a-bookmarklet">What is a bookmarklet?</h4>
+<p>It’s a basic tool that with a single click alters the functionality of your viewed web-page, such as changing text, colors, searching a highlighted word online, or translating a page. It is designed to customize and alter the current experience.</p>
+<p>They are essentially small lines of Javascript (or jQuery) that alter a page’s HTML or CSS.</p>
+<h2 id="tutorial-videos">Tutorial videos</h2>
+<p>Dan Shiffman’s</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DloHqUfPbJc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<p>Lee’s</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hzmtJbhJ4Ek" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<h4 id="how-to-use-it">how to use it?</h4>
+<ul>
+<li><a href="https://www.howtogeek.com/189358/beginner-geek-how-to-use-bookmarklets-on-any-device/">how to use bookmarklets</a></li>
+<li><a href="https://www.ph-uhl.com/0010-Bookmarklets/">bookmarklet</a> suggestions</li>
+<li><a href="https://subsimple.com/bookmarklets/jsbuilder.htm">bookmarklet builder</a></li>
+</ul>
+<h2 id="web-extensions">Web Extensions</h2>
+<figure>
+<img src="correction.jpg" alt="" /><figcaption>correction in New York Times</figcaption>
+</figure>
+<p>In 2018 the New York Times featured <a href="https://www.nytimes.com/2018/03/15/smarter-living/browser-extensions-text-swapping.html">the article</a> <em>The Simple, Serendipitous Joy of Browser Extensions.</em> Days earlier the Times had printed an article that referenced the Time of Shedding and Cold Rocks. It was an error in printing. A page editor had the browser extension on and it changed the word Millenials to Snake People and other satirical changes, that then were saved and somehow made it to the print edition of the Times.</p>
+<p>As the name implies, a browser extension is a plug-in that you add to a web browser to extend its functionality. In my browser I currently have ad-block extensions, a color picker, and an extension to make it easier to navigate via keyboard instead of the mouse. They are created with standard website creation tools HTML, CSS and Javascript. Browser extensions can make certain tasks simpler, like the ability to easily tweet a link to the current page you’re browsing</p>
+<h3 id="examples">Examples</h3>
+<p><a href="https://chrome.google.com/webstore/detail/millennials-to-snake-peop/jhkibealmjkbkafogihpeidfcgnigmlf?hl=en-US">Millenials to Snake People</a></p>
+<p><a href="https://chrome.google.com/webstore/detail/airhorn/lgdilciaoommilaaclidgmipedclhnph/reviews">Airhorn</a> by Todd Anderson</p>
+<p><a href="https://toddwords.com/hitchhiker/">Hitchhiker</a> by Todd Anderson</p>
+<h4 id="interactive-music-videos-as-browser-extensions">Interactive Music videos as browser extensions</h4>
+<p>Yung Jake - <a href="http://e.m-bed.de/d/">Embedded</a> (site is down) - Original no longer works. Read <a href="https://www.ravelinmagazine.com/posts/embedded-yung-jake/">this article</a> about the video.</p>
+<p>Discernment Music Video - <a href="https://chrome.google.com/webstore/detail/discernmentcrx/iopbemenfocjcmppgaifceepkjcbmpni">extension</a> by Dina Kelberman - I highly recommend trying this interactive music video in your browser out! It lasts five minutes. Don’t have anything important (that is unsaved I mean) open in your web browser before running!</p>
+<h2 id="try-out-making-a-bookmarklet">Try out making a Bookmarklet</h2>
+<p>For this assignment, please use Google Chrome! Each browser works differently when it comes to bookmarklets, so it will be easier for us if we use the same browser. Once you get it to work, feel free to try another browser.</p>
+<p>Make a simple bookmarklet to funkify the web. Your bookmarklet, when you click on it, should add CSS, change placement of things, alter words or otherwise affect the page a viewer is looking at.</p>
+<p>For inspiration, check out a previous year’s iteration of my Scripting <a href="https://change-stylesheet-w-jquery.glitch.me/">class site</a> for heavy CSS hacking, or make your own easy-to-read-hack, or alternative-dark-mode or remove-adds on a website you frequent.</p>
+<p>You should use a querySelector to grab HTML and CSS and change them.</p>
+<h3 id="resources">Resources</h3>
+<p><a href="https://bookmarklets.org/maker/">Bookmarklets Maker</a></p>
+<h4 id="bookmarklet-examples">Bookmarklet examples</h4>
+<p><a href="https://mreidsma.github.io/bookmarklets/unicorn.html">Add a unicorn to Any page</a> bookmarklet</p>
+<p><a href="https://mreidsma.github.io/bookmarklets/papyrus.html">Change the font to Papyrus on any page</a></p>
+<h2 id="homework">Homework</h2>
+<h3 id="watch">Watch</h3>
+<p>Watch the video linked above</p>
+<p>Additional Coding train videos.</p>
+<ol type="1">
+<li><a href="https://www.youtube.com/watch?v=DloHqUfPbJc">Bookmarklets</a></li>
+<li><a href="https://www.youtube.com/watch?v=hkOTAmmuv_4">Intro to Chrome Extensions</a></li>
+</ol>
+<h3 id="complete-the-subversive-website-assignment">Complete the Subversive website assignment</h3>
+<p>For complete info and requirements, see homework section in the <a href="../week4">week 4 notes</a> or on Moodle.</p>
+</body>
+</html>
