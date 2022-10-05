@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Week 6 notes</title>
+  <link rel='stylesheet' href='../assets/classless.css'>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+</head>
+<body>
+<h1 id="week-6">Week 6</h1>
+<ul>
+<li>Data</li>
+<li>Intro to JSON</li>
+<li>Extensions</li>
+</ul>
+<h2 id="data-formats">Data formats</h2>
+<p>Data can be saved in many kinds of formats.</p>
+<ul>
+<li>CSV - comma separated values</li>
+<li>XML - an older standard</li>
+<li>JSON - Javascript Object Notation</li>
+<li>text file - each line of the file containing a different data point</li>
+<li>a web page</li>
+</ul>
+<h3 id="json">JSON</h3>
+<p>JSON is a good standard way of working with data files and is based on how Javascript literal objects are defined.</p>
+<p>JSON uses JavaScript syntax. The JSON format is text only.</p>
+<p>JSON is written in a key-value pair format.</p>
+<pre><code>&quot;name&quot;:&quot;John&quot; </code></pre>
+<p>Keep in mind that JSON requires double quotes!</p>
+<h3 id="json-type-examples">JSON Type Examples</h3>
+<h4 id="basic-example">Basic Example</h4>
+<pre><code>let car = {
+  name: &#39;Saab&#39;,
+  color: &#39;red&#39;
+  year: 2016
+}</code></pre>
+<h4 id="json-string">JSON String</h4>
+<pre><code>{ &quot;name&quot;:&quot;Ricardo&quot; }</code></pre>
+<h4 id="json-number">JSON Number</h4>
+<pre><code>{ &quot;age&quot;:77 }</code></pre>
+<h4 id="json-object">JSON Object</h4>
+<pre><code>{
+  &quot;person&quot;:{ &quot;name&quot;:&quot;Shankar Patel&quot;, &quot;age&quot;:40, &quot;city&quot;:&quot;Los Angeles&quot; }
+}</code></pre>
+<h2 id="accessing-json-with-dot-notation">Accessing JSON with Dot Notation</h2>
+<pre><code>character = { &quot;name&quot;:&quot;Shredder&quot;, &quot;age&quot;:30, &quot;home&quot;:&quot;TerrorDome&quot; };
+
+enemy = character.name;</code></pre>
+<h2 id="accessing-json-with-bracket-notation">Accessing JSON with Bracket Notation</h2>
+<pre><code>enemy = character[&quot;name&quot;];</code></pre>
+<h2 id="nested-json">Nested JSON</h2>
+<p>Very common!</p>
+<p>Example</p>
+<pre><code>rappers = {
+    &quot;Migos&quot;: {
+        &quot;rapper1&quot;:&quot;Offset&quot;,
+        &quot;rapper2&quot;:&quot;Quavo&quot;,
+        &quot;rapper3&quot;:&quot;Takeoff&quot;
+    }
+ }</code></pre>
+<h5 id="access-data-with-dot-or-bracket-notation.">Access data with dot or bracket notation.</h5>
+<pre><code> let favoriteRapper = rappers.Migos.rapper2;</code></pre>
+<h5 id="change-data-value">Change data value</h5>
+<pre><code>rappers.Migos.rapper2 = &quot;Taylor Swift&quot;;</code></pre>
+<h4 id="json-array">JSON Array</h4>
+<pre><code>let class = {
+  &quot;students&quot;:[ &quot;Jorge&quot;,&quot;Will&quot;,&quot;Serena&quot;,&quot;Ellen&quot;,&quot;Moe&quot;,&quot;Shemp&quot;,&quot;Larry&quot;,&quot;Xenia&quot;]
+}
+
+let closestStudent = class.students[3]; // &quot;Ellen&quot;</code></pre>
+<h4 id="load-json-with-jquery">Load JSON with jQuery</h4>
+<pre><code>var myJSON = &#39;{&quot;name&quot;:&quot;Mindy&quot;, &quot;age&quot;:31, &quot;city&quot;:&quot;New York&quot;}&#39;;
+var myObj = JSON.parse(myJSON);
+$(&quot;#demo&quot;).html(myObj.name);</code></pre>
+<h3 id="extensions">Extensions</h3>
+<p>files needed: - manifest - javascript file - html file</p>
+<p>Example manifest:</p>
+<pre><code>{
+  &quot;manifest_version&quot;: 2,
+  &quot;name&quot;: &quot;Hello World!&quot;,
+  &quot;description&quot;: &quot;This extension shows a Hello World message!&quot;,
+  &quot;version&quot;: &quot;1.0&quot;,
+  &quot;browser_action&quot;: {
+    &quot;default_icon&quot;: &quot;icon.png&quot;,
+    &quot;default_popup&quot;: &quot;window.html&quot;
+  }
+}
+</code></pre>
+<p>Example html file, window.html</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src=&quot;background.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;Hello World&lt;/div&gt;
+  &lt;div&gt;This is a Chrome extension&lt;/div&gt;
+  &lt;div&gt;And this is some html&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>Javascript file, background.js</p>
+<figure>
+<img src="https://developer.chrome.com/extensions/examples/tutorials/getstarted/icon.png" alt="" /><figcaption>An example icon</figcaption>
+</figure>
+<h4 id="resources">Resources</h4>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_json_intro.asp">W3Schools JSON intro</a></li>
+<li>Darius Kazemi’s <a href="https://github.com/dariusk/corpora">Corpora</a> are mostly JSON files</li>
+</ul>
+<h2 id="extensions-1">Extensions</h2>
+<p>A browser extension enhances or alters your browsing experience by changing how your browser works.</p>
+<p>A simple one we can think of is an ad blocker. This improves browsing by blocking ads when you view the web.</p>
+<h3 id="how-to-do-it">How to do it</h3>
+<p>Create a new project folder.</p>
+<p>Inside the folder create a manifest.json file.</p>
+<p>Let’s start with this:</p>
+<pre><code>
+{
+  &quot;manifest_version&quot;:2,
+  &quot;version&quot;:&quot;1.0&quot;,
+  &quot;name&quot;:&quot;Test&quot;,
+}</code></pre>
+<p>To load this:</p>
+<p>In <strong>Firefox</strong>, type in the address bar: <code>about:debugging#/runtime/this-firefox</code></p>
+<p>In <strong>Chrome</strong>, type in the address bar: <code>chrome://extensions.</code></p>
+<ul>
+<li>You’ll need to enable developer made and switch into it</li>
+<li>Click “Load unpacked” and select the directory of your new extension</li>
+</ul>
+<p>And with this, you’ve installed an empty extension.</p>
+<p>To add code to our extension, let’s alter our manifest.</p>
+<pre><code>{
+  &quot;manifest_version&quot;:2,
+  &quot;version&quot;:&quot;1.0&quot;,
+  &quot;name&quot;:&quot;Test&quot;,
+  &quot;content_scripts&quot;:[
+    {
+     &quot;matches&quot;:[&quot;&lt;all_urls&gt;&quot;],
+     &quot;js&quot;:[&quot;main.js&quot;]
+    }
+  ]
+}</code></pre>
+<p>This specifies our Test program will load the javascript file main.js and apply to all URLs we visit. It does this by having the javascript (and css) inject into websites through the DOM.</p>
+<p>The js array lists all the javascript files to run. Above, we’ve only listed one.</p>
+<p>Let’s create our main.js file now:</p>
+<pre><code>alert(&quot;The test extension is running&quot;)</code></pre>
+<p>Reload the extension. Now navigate to any URL and you should see an alert pop up to confirm it’s working.</p>
+<p>Now let’s do something:</p>
+<pre><code>console.log(&quot;The extension is up and running&quot;);
+
+var images = document.getElementsByTagName(&#39;img&#39;)
+
+for (elt of images){
+   elt.src = `${browser.runtime.getURL(&quot;pp.jpg&quot;)}`
+   elt.alt = &#39;an alt text&#39;
+}</code></pre>
+<p>Let’s change our manifest:</p>
+<pre><code>{
+  &quot;manifest_version&quot;:2,
+  &quot;version&quot;:&quot;1.0&quot;,
+  &quot;name&quot;:&quot;Test&quot;,
+  &quot;content_scripts&quot;:[
+   {
+    &quot;matches&quot;:[&quot;&lt;all_urls&gt;&quot;],
+    &quot;js&quot;:[&quot;main.js&quot;]
+   }
+  ],
+  &quot;web_accessible_resources&quot;: [
+        &quot;my-photo.jpg&quot;
+  ]
+}</code></pre>
+<p>We’ll need to add <code>my-photo.jpg</code> to our project directory as well. Change the name to match your image file name.</p>
+<h2 id="homework">Homework</h2>
+<h1 id="reading-watching">## Reading / Watching</h1>
+<ul>
+<li>Read the w3school <a href="https://www.w3schools.com/nodejs/default.asp">NodeJS tutorial</a> down to Events.</li>
+<li>OPTIONAL: Interested in what’s happening under the hood that lets you writ a desktop application in Node? Read <a href="https://medium.freecodecamp.org/what-exactly-is-node-js-ae36e97449f5">What Exactly is Node.js?</a></li>
+<li>Watch the Coding Train videos <a href="https://www.youtube.com/watch?v=RF5_MPSNAtU">What is nodeJS</a> and <a href="https://www.youtube.com/watch?v=s70-Vsud9Vk">What is NPM?</a></li>
+<li>Test yourself. Come to class able to answer:</li>
+<li>what is Node.js?</li>
+<li>How do you get it?</li>
+<li>Why would you use it?</li>
+<li>What is NPM?</li>
+</ul>
+<p>BEFORE CLASS: Windows users: Please install <a href="https://docs.microsoft.com/en-us/windows/wsl/about">Windows Subsystem For Linux</a> OR <a href="https://www.cygwin.com/">Cygwin</a>. This will allow you to run Linux commands and browse the file system in your Terminal. Mac Users, you alreay have a Linux-like operating system and will be able to run Linux commands in the Terminal.</p>
+<h2 id="homework---coding">Homework - coding</h2>
+<p>Make an extension for yourself. Follow the procedure to make an extension. It can be something funny, something serious, something helpful, or something strange.</p>
+<p>Start by brainstorming your idea. You may want to mock it up using glitch.com to see how it might look on an affected page. If your extension is for use on specific websites, use the inspector in the web browser to check out parts of the page. Perhaps you are hiding a specific class. Maybe you are adding text, changing all of the images, adding background colors, changing fonts, inserting a moving gif, making a favorite website easier to read, or removing its ads.</p>
+<p>Create your manifest. Feel free to start by copying a default one and making the changes that you need. Give your extension a name, a version number in quotes, and link to any needed html, js files.</p>
+<p>When finished, go to Chrome and open your extensions. Check to make sure that the Extensions are turned on (button in top right). Click on button to “Load Unpacked” extension. It should now be stored in your extensions bar. You can click on the pin to pin it to your extensions bar. Upload your folder (please compress it first) and a screenshot of your extension in use.</p>
+</body>
+</html>
