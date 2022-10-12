@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Week 7</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel='stylesheet' href='../assets/classless.css'>
+</head>
+<body>
+<h1 id="week-7">Week 7</h1>
+<p>Today: * Glitch web IDE * Javascripting: working with time</p>
+<h2 id="night-day-site">Night / day site</h2>
+<p>The goal is to make a site that changes based on whether it’s day or night.</p>
+<p>Let’s start by making a button</p>
+<pre><code>&lt;div class=&#39;pagecontent&#39;&gt;
+  &lt;button&gt;click me&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+<p>If we click the button, it doesn’t yet do anything. Let’s give some instruction.</p>
+<p>Add a color class.</p>
+<pre><code>.black {
+  background-color: black;
+}</code></pre>
+<p>Now let’s hook up our Javascript:</p>
+<pre><code>function displayTime(){
+  let currentTime = new Date();
+  let hours currentTime.getHours();
+  let minutes = currentTime.getMinutes();
+  let seconds = currentTime.getSeconds();
+}</code></pre>
+<p>Let’s display this info</p>
+<pre><code>//grab our clock element
+let clockDiv = document.getElementById(&#39;clock&#39;);
+
+//set the text in the div
+
+clockDiv.innerText = hours + &quot;:&quot; + minutes + &quot;:&quot; + seconds;</code></pre>
+<p>So our Javascript now looks like this:</p>
+<pre><code>$(document).ready( function() {
+
+  function displayTime() {
+    let currentTime = new Date();
+    let hours = currentTime.getHours();
+    let minutes = currentTime.getMinutes();
+    let seconds = currentTime.getSeconds();
+
+    // This gets a &quot;handle&quot; to the clock div in our HTML
+    let clockDiv = document.getElementById(&#39;clock&#39;);
+
+    // Then we set the text inside the clock div 
+    // to the hours, minutes, and seconds of the current time
+    clockDiv.innerText = hours + &quot;:&quot; + minutes + &quot;:&quot; + seconds;
+  }
+
+  // This runs the displayTime function the first time
+  displayTime();
+
+});</code></pre>
+<p>Now we’ll make it visible.</p>
+<pre><code>&lt;body&gt;
+   &lt;div id=&#39;clock&#39;&gt;&lt;/div&gt;
+&lt;/body&gt;</code></pre>
+<p>We should now see the clock.</p>
+<p>Let’s make it look good.</p>
+<pre><code>body {
+    background-color: #80d4ea;
+}
+
+#clock {
+    height: 100px;
+    width: 800px;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    padding-top: 70px;
+    font-family: courier, monospace;
+    text-align: center;
+    color: white;
+    font-size: 100px;
+}</code></pre>
+<p>So far, the clock is just presenting the time at page load. But then nothing after that. Let’s make it advance every second.</p>
+<pre><code>setInterval(displayTime, 1000);</code></pre>
+<h3 id="challenge-how-to-fix-the-display">Challenge: How to fix the display</h3>
+<ol type="1">
+<li>Digits 1-9 just show one digit. How do we fix that?</li>
+<li>How do we show AM or PM?</li>
+</ol>
+<h2 id="web-based-ide-and-server-glitch.com">Web-based IDE and server: Glitch.com</h2>
+<p><a href="http://glitch.com">Glitch</a></p>
+<h2 id="assignment---build-a-better-clock">Assignment - Build a Better Clock</h2>
+<ul>
+<li>Follow the <a href="https://googlecreativelab.github.io/coder-projects/projects/digital_clock/">tutorial</a> to build a clock. The tutorial gets you going, but it produces a pretty basic clock. When you complete the tutorial, modify and create new CSS and change the Javascript. Make it better, more beautiful, easy to read, more interesting or even a vastly different clock. (For example, if you wanted to change the clock, you could countdown a presidency, create a clock for a new country with its own timezone, create a clock that updates once a decade, a clock that shows images instead of the time, etc)</li>
+<li>Bonus points for making your clock responsive so that it looks good on your phone and/or digital watch!</li>
+</ul>
+<h4 id="examples-of-other-alternative-clocks">Examples of other alternative clocks</h4>
+<p>For this assignment, you are welcome to stick with and build off this counting digital clock approach. The following are clocks that count in a more ‘analog’ style.</p>
+<ul>
+<li><a href="https://www.humanclock.com/">Human Clock</a> - features a photo of a different person every minute holding up the time</li>
+<li>A basic clock in <a href="https://binary.onlineclock.net/">Binary</a>!</li>
+<li>My own version of a <a href="http://leetusman.com/everyday/9/">Season Clock</a> that rotates once a year.</li>
+<li><a href="http://blog.pixelbreaker.com/polarclock">Polar Clock</a> - written in Flash</li>
+<li><a href="http://www.worldometers.info/">Worldometer</a> - not a clock but clock-like</li>
+<li>an <a href="https://jayasurian123.github.io/berlin-uhr/">online implementation</a> of Berlin’s famous <a href="https://www.futilitycloset.com/2017/01/17/the-mengenlehreuhr/">Mengenlehreuhr clock</a></li>
+</ul>
+<p>Homework: Build your own custom clock.</p>
+<p>Examples: * a world clock showing multiple time zones at once * a countdown clock til death (sorry!) (or analog clock that shows the phases you’ll have in life) * a digital cuckoo clock * Adding in images * Build an advent calendar</p>
+</body>
+</html>
