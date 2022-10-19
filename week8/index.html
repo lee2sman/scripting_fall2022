@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Week 8</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel='stylesheet' href='../assets/classless.css'>
+</head>
+<body>
+<h2 id="intro-to-node">Intro to Node</h2>
+<h1 id="today">Today</h1>
+<ul>
+<li>Node</li>
+<li>Express (library)</li>
+<li>Socket.io (library)</li>
+</ul>
+<h1 id="intro-to-nodejs">Intro to NodeJS</h1>
+<ul>
+<li>Node is a version of Javascript that works outside the browser. It can run on the command line and on servers</li>
+<li>Node is used for writing backend applications without a browser, though it can be used to manage the server in addition to the software you write for a browser</li>
+<li>Download <a href="https://nodejs.org/en/">Node</a></li>
+</ul>
+<p>Node <a href="https://glitch.com/~glitch-hello-node">starter code</a></p>
+<h1 id="npm">NPM</h1>
+<ul>
+<li>NPM is the Node Package Manager</li>
+<li>A package manager is a kind of <em>app store</em> for the command line, sometimes for a particular operating system, such as <a href="http://brew.sh">Homebrew</a> for Mac, or for a specific programming language.</li>
+<li>NPM is the package manager for Node software</li>
+<li>Each node program you write that will also use NPM software needs a <code>package.json</code> file to list the NPM packages you want to include and use</li>
+</ul>
+<h1 id="express">Express</h1>
+<ul>
+<li>Express is a node package</li>
+<li>It is a simple web framework for node that can host files and get user input</li>
+</ul>
+<p><em>Hello-express</em> <a href="https://glitch.com/~hello-express">starter code</a> on Glitch.</p>
+<p>To use it in your program</p>
+<pre><code>var express = require(&#39;express&#39;);
+
+//you can now create an &#39;app&#39;
+//This app holds an instance of express and can use its functionality
+
+var app = express();
+
+var server = app.listen(4000); //listens on port 4000. Triggers callback.
+
+app.use(express.static(&#39;public&#39;));</code></pre>
+<p>This means http://localhost:4000 will host the project</p>
+<h1 id="intro-to-socket.io">Intro to Socket.io</h1>
+<p><em>–resources from <a href="https://glitch.com/edit/#!/haunted-house-site">Todd Anderson</a></em></p>
+<p><strong>For this tutorial, our starter code and learning resource can be found <a href="https://glitch.com/edit/#!/haunted-house-site">here</a>. Our <em>front door</em> is <a href="https://haunted-house-site.glitch.me/">here</a>.</strong></p>
+<p><a href="http://socket.io">Socket.io</a> is a javascript library that runs in both the browser and server to allow realtime communication between the two. This allows for collaborative web experiences where many people can interact on the same page, all without using a cumbersome database or even much backend code.</p>
+<p>Socket.io does this by having both a client-side and a server-side library which communicate with each other through named events that pass between the two (similar to the way keyboard and mouse events are handled).</p>
+<p>Below is a rough guide to how socket.io works on the client side and on the server side, and how the two communicate.</p>
+<h3 id="client-side">Client Side</h3>
+<p>On the client side, the socket.io client library needs to be included in the HTML:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="op">&lt;</span>script src<span class="op">=</span> <span class="st">&#39;https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js&#39;</span><span class="op">&gt;&lt;/</span>script<span class="op">&gt;</span></span></code></pre></div>
+<p>And the following line needs to be included at the top of your client.js file:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">var</span> socket <span class="op">=</span> <span class="fu">io</span>()</span></code></pre></div>
+<p>The client can then send messages to the server in the following form</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">//the function takes a string and then an object full of data (any size)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>socket<span class="op">.</span><span class="fu">emit</span>(<span class="st">&#39;nameOfEvent&#39;</span><span class="op">,</span> {<span class="dt">data</span><span class="op">:</span> <span class="st">&quot;data you are sending to the server&quot;</span>})</span></code></pre></div>
+<p>And the client can listen for messages from the server like so:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>socket<span class="op">.</span><span class="fu">on</span>(<span class="st">&#39;nameOfServerEvent&#39;</span><span class="op">,</span> <span class="kw">function</span>(data){</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>  <span class="co">//the code you want to use on the data sent back from the server</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>}</span></code></pre></div>
+<h3 id="server-side">Server Side</h3>
+<p>Just about all of your socket.io programs are going to want the following boilerplate in the server.js file.</p>
+<p><a href="https://glitch.com/~socketio-chat">starter code</a></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">var</span> socket <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;socket.io&#39;</span>)<span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">var</span> io <span class="op">=</span> <span class="fu">socket</span>(server)<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>io<span class="op">.</span><span class="at">sockets</span><span class="op">.</span><span class="fu">on</span>(<span class="st">&#39;connection&#39;</span><span class="op">,</span> newConnection)<span class="op">;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="co">//This function will be called whenever a new web browser visits the page. It runs as soon as a connection is set up with the server.</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="kw">function</span> <span class="fu">newConnection</span>(socket){</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;new connection: &#39;</span> <span class="op">+</span> socket<span class="op">.</span><span class="at">id</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a>    <span class="co">//we put all the rest of our code inside that connection, because we only want it to run once we&#39;re connected</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a>  <span class="co">//this section will have one or more event listeners that line up with various things that can happen on the client side (like sending a message in a chat app)</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a>    socket<span class="op">.</span><span class="fu">on</span>(<span class="st">&#39;myEvent&#39;</span><span class="op">,</span> myEventHandler)<span class="op">;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a>    <span class="kw">function</span> <span class="fu">myEventHandler</span>(data){</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a>    <span class="co">//what you do in response to the event goes here</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a>    <span class="co">//often you&#39;ll want one of the four &#39;emit&#39; events listed below</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a>    socket<span class="op">.</span><span class="at">broadcast</span><span class="op">.</span><span class="fu">emit</span>(<span class="st">&#39;myServerEvent&#39;</span><span class="op">,</span> data)<span class="op">;</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a>        </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a>    }</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true"></a>}</span></code></pre></div>
+<p><strong>Server Side Cheat Sheet</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>  socket<span class="op">.</span><span class="fu">emit</span>(<span class="st">&#39;hello&#39;</span><span class="op">,</span> <span class="st">&#39;can you hear me?&#39;</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="st">&#39;abc&#39;</span>)<span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>  <span class="co">// sending to all clients except sender</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>  socket<span class="op">.</span><span class="at">broadcast</span><span class="op">.</span><span class="fu">emit</span>(<span class="st">&#39;broadcast&#39;</span><span class="op">,</span> <span class="st">&#39;hello friends!&#39;</span>)<span class="op">;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a>  <span class="co">// sending to all clients in &#39;game&#39; room except sender</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a>  socket<span class="op">.</span><span class="fu">to</span>(<span class="st">&#39;game&#39;</span>)<span class="op">.</span><span class="fu">emit</span>(<span class="st">&#39;nice game&#39;</span><span class="op">,</span> <span class="st">&quot;let&#39;s play a game&quot;</span>)<span class="op">;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a>  <span class="co">// sending to all clients in &#39;game1&#39; and/or in &#39;game2&#39; room, except sender</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a>  socket<span class="op">.</span><span class="fu">to</span>(<span class="st">&#39;game1&#39;</span>)<span class="op">.</span><span class="fu">to</span>(<span class="st">&#39;game2&#39;</span>)<span class="op">.</span><span class="fu">emit</span>(<span class="st">&#39;nice game&#39;</span><span class="op">,</span> <span class="st">&quot;let&#39;s play a game (too)&quot;</span>)<span class="op">;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a>  <span class="co">// sending to all clients in &#39;game&#39; room, including sender</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a>  io<span class="op">.</span><span class="fu">in</span>(<span class="st">&#39;game&#39;</span>)<span class="op">.</span><span class="fu">emit</span>(<span class="st">&#39;big-announcement&#39;</span><span class="op">,</span> <span class="st">&#39;the game will start soon&#39;</span>)<span class="op">;</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true"></a>  <span class="co">// sending to individual socketid (private message)</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true"></a>  io<span class="op">.</span><span class="fu">to</span>(socketId)<span class="op">.</span><span class="fu">emit</span>(<span class="st">&#39;hey&#39;</span><span class="op">,</span> <span class="st">&#39;I just met you&#39;</span>)<span class="op">;</span></span></code></pre></div>
+<h3 id="message-passing-example-chat-room">Message Passing Example: Chat Room</h3>
+<p>A user logs into a chat room using socket.io. Once the page loads a connection is established, giving the user a unique id and trigger the newConnection function through the following part of the server code</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>io<span class="op">.</span><span class="at">sockets</span><span class="op">.</span><span class="fu">on</span>(<span class="st">&#39;connection&#39;</span><span class="op">,</span> newConnection)<span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="kw">function</span> <span class="fu">newConnection</span>(socket){</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a> <span class="co">//...</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a>}</span></code></pre></div>
+<p>The user enters their username on the client, and then types and sends a message into the chatroom. The following client-side code sends the message:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>socket<span class="op">.</span><span class="fu">emit</span>(<span class="st">&#39;newMsg&#39;</span><span class="op">,</span> {<span class="dt">username</span><span class="op">:</span>username<span class="op">,</span> <span class="dt">msg</span><span class="op">:</span>msg})<span class="op">;</span></span></code></pre></div>
+<p>This is then handled by the appropriate handler on the server (with the matching name):</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">function</span> <span class="fu">newConnection</span>(socket){</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a>   socket<span class="op">.</span><span class="fu">on</span>(<span class="st">&#39;newMsg&#39;</span><span class="op">,</span> <span class="kw">function</span>(data){</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a>     <span class="co">//the same data from the client is sent to all other clients</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a>     socket<span class="op">.</span><span class="at">broadcast</span><span class="op">.</span><span class="fu">emit</span>(<span class="st">&#39;newMsgFromServer&#39;</span><span class="op">,</span> data)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a>   }</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a>}</span></code></pre></div>
+<p>The server receives the message and then sends it out to all other connected clients. This message from the server is then handled by the following code on the client:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a>socket<span class="op">.</span><span class="fu">on</span>(<span class="st">&#39;newMsgFromServer&#39;</span><span class="op">,</span> <span class="kw">function</span>(data){</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a>    <span class="fu">addMsg</span>(data<span class="op">.</span><span class="at">username</span><span class="op">,</span> data<span class="op">.</span><span class="at">msg</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a>})</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a><span class="co">//This function uses jQuery to add the message to the HTML</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true"></a><span class="kw">function</span> <span class="fu">addMsg</span>(user<span class="op">,</span> msg){</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true"></a>    <span class="fu">$</span>(<span class="st">&#39;#messages&#39;</span>)<span class="op">.</span><span class="fu">append</span>(<span class="st">&quot;&lt;p&gt;&lt;strong&gt;&quot;</span><span class="op">+</span>user<span class="op">+</span><span class="st">&quot;: &lt;/strong&gt;&quot;</span><span class="op">+</span>msg<span class="op">+</span><span class="st">&quot;&lt;/p&gt;&quot;</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true"></a>}</span></code></pre></div>
+</body>
+</html>
