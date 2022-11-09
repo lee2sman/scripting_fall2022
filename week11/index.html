@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Week 11</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel='stylesheet' href='../assets/classless.css'>
+</head>
+<body>
+<h1 id="week-11">Week 11</h1>
+<p>Today:</p>
+<ul>
+<li>Review our weather apps</li>
+<li>Streaming music app with Node.js</li>
+<li>Our own radio streaming application
+<ul>
+<li>json to hold our data</li>
+<li>creating our own API using json</li>
+</ul></li>
+</ul>
+<h2 id="weather-apps-review">Weather apps review</h2>
+<h2 id="streaming-audio-app-with-node.js">Streaming audio app with Node.js</h2>
+<p>Create a folder Music and put some mp3s in it.</p>
+<pre><code>//server.js
+
+const openradio = require(&quot;openradio&quot;);
+const radio = openradio();
+const http = require(&quot;http&quot;);
+const fs = require(&quot;fs&quot;);
+
+http
+  .createServer((req, res) =&gt; {
+    res.setHeader(&quot;content-type&quot;, &quot;audio/mp3&quot;);
+    radio.pipe(res);
+  })
+  .listen(3000);
+
+var { extname } = require(&quot;path&quot;);
+var list = fs
+  .readdirSync(&quot;./Music&quot;, { withFileTypes: true })
+  .filter(function(item) {
+    // Make it returns true
+    return (
+      item.isFile &amp;&amp;
+      (extname(item.name) === &quot;.mp3&quot; ||
+        extname(item.name) === &quot;.ogg&quot; ||
+        extname(item.name) === &quot;.opus&quot; ||
+        extname(item.name) === &quot;.aac&quot; ||
+        extname(item.name) === &quot;.m4a&quot; ||
+        extname(item.name) === &quot;.wav&quot; ||
+        extname(item.name) === &quot;.flac&quot; ||
+        extname(item.name) === &quot;.ape&quot; ||
+        extname(item.name) === &quot;.wv&quot; ||
+        extname(item.name) === &quot;.oga&quot;)
+    );
+  })
+  .map(songItem =&gt; songItem.name);
+
+// Fetch &amp; Play song randomly fron Music Directory!
+radio.play(fs.createReadStream(`./Music/${list[Math.floor(Math.random() * list.length)]}`));
+radio.on(&quot;end&quot;, () =&gt; {
+  radio.play(fs.createReadStream(`./Music/${list[Math.floor(Math.random() * list.length)]}`));
+});
+</code></pre>
+<h2 id="radio-station-app">Radio station app</h2>
+<p>Let’s make a stations.json file to hold our data:</p>
+<pre><code>{
+  &quot;stations&quot;: [
+    {
+      &quot;title&quot;: &quot;Do!! You!!&quot;,
+      &quot;website&quot;: &quot;https://doyou.world&quot;,
+      &quot;streamUrl&quot;: &quot;https://doyouworld.out.airtime.pro/doyouworld_a&quot;,
+      &quot;logoUrl&quot;: &quot;https://orllewin.uk/rad/rad_doyou_256.png&quot;,
+      &quot;colour&quot;: &quot;#f4de7f&quot;
+    },
+    {
+      &quot;title&quot;: &quot;Netil Radio&quot;,
+      &quot;website&quot;: &quot;https://www.netilradio.com/&quot;,
+      &quot;streamUrl&quot;: &quot;https://netilradio.out.airtime.pro/netilradio_a&quot;,
+      &quot;logoUrl&quot;: &quot;https://orllewin.uk/rad/netil_radio_256.png&quot;,
+      &quot;colour&quot;: &quot;#407eee&quot;
+    },
+    {
+      &quot;title&quot;: &quot;NTS 1&quot;,
+      &quot;website&quot;: &quot;https://www.nts.live/&quot;,
+      &quot;streamUrl&quot;: &quot;https://stream-relay-geo.ntslive.net/stream&quot;,
+      &quot;logoUrl&quot;: &quot;https://orllewin.uk/rad/rad_nts_256.png&quot;,
+      &quot;colour&quot;: &quot;#c99dc4&quot;
+    },
+    {
+      &quot;title&quot;: &quot;NTS 2&quot;,
+      &quot;website&quot;: &quot;https://www.nts.live/&quot;,
+      &quot;streamUrl&quot;: &quot;https://stream-relay-geo.ntslive.net/stream2&quot;,
+      &quot;logoUrl&quot;: &quot;https://orllewin.uk/rad/rad_nts_256.png&quot;,
+      &quot;colour&quot;: &quot;#8E81A6&quot;
+    }
+  ]
+}</code></pre>
+<p>What does a basic audio player look like?</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;body&gt;
+&lt;audio id=&quot;music&quot; preload=&quot;all&quot;&gt;
+  
+  &lt;!-- uncomment the following line and add comment to the one after to play a local audio file assets/a.mp3 --&gt;
+  &lt;!-- &lt;source src=&quot;http://localhost:8000/assets/a.mp3&quot;&gt; --&gt;
+   &lt;source src=&#39;https://stream-relay-geo.ntslive.net/stream&#39;&gt;&gt;
+&lt;/audio&gt;
+&lt;button onclick=&quot;playMusic()&quot;&gt;play&lt;/button&gt;
+&lt;script&gt;
+  function playMusic(){
+  let music = document.getElementById(&#39;music&#39;);
+      music.play();
+    }
+&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>Our goal: build a web application frontend, that looks like:</p>
+<p><img src="radio.png" alt="radio screenshot" /><br />
+Design: Orllewin radio</p>
+<h2 id="homework">Homework</h2>
+<p>Working in a team, build a web radio application. Talk about your design goals, strategy and what you do and don’t know!</p>
+<p>Begin by sketching your application out.</p>
+</body>
+</html>
