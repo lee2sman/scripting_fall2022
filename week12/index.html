@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Week 12</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel='stylesheet' href='../assets/classless.css'>
+</head>
+<body>
+<h1 id="week-12">Week 12</h1>
+<ul>
+<li>check-in</li>
+<li>Working with data with JSON</li>
+<li>GETing and SETing data</li>
+<li>constructing our own API</li>
+</ul>
+<h1 id="working-with-data-with-json">Working With Data, with JSON</h1>
+<h3 id="json-syntax">JSON syntax</h3>
+<ul>
+<li>Data is held in <strong>name/value</strong> pairs</li>
+<li>Data is separated by commas</li>
+<li>Curly braces hold objects</li>
+</ul>
+<p>A name value pair: <code>{ "name": "Ricardo" }</code></p>
+<p>A name/value pair consists of a field name (in double quotes), followed by a colon, followed by a value. Javascript allows interchangeable use of double and single quotes. JSON doesn’t: you must use double quotes for keys.</p>
+<pre><code>{ &quot;age&quot;: 77 }</code></pre>
+<p>Square brackets hold arrays</p>
+<p>JSON works very similar to Javascript objects. Here is a a Javascript object:</p>
+<pre><code>var person = { name: &quot;Ricardo&quot;, age: 71, city: &quot;Philadelphia&quot; };</code></pre>
+<h3 id="accessing-object-values">Accessing Object Values</h3>
+<p>You can access JSON data with dot or bracket notation.</p>
+<p>Example of accessing with dot notation:</p>
+<pre><code>person.name;</code></pre>
+<p>Example of accessing with bracket notation:</p>
+<pre><code>person[&quot;name&quot;];</code></pre>
+<p>You can modify the data.</p>
+<pre><code>person.age = 36;</code></pre>
+<p>You can delete properties from an object with delete.</p>
+<pre><code>delete person.age;</code></pre>
+<p>Example JSON file describing a school</p>
+<pre><code>{
+  &quot;name&quot;: &quot;Purchase College&quot;,
+  &quot;official name&quot;: &quot;State University of New York at Purchase&quot;
+  
+}</code></pre>
+<p>Note that you use a comma between data pairs, but not after the last entry.</p>
+<p>Accessing a Javascript object in a loop. In this example, there is a <strong>for-in</strong> loop.</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;Use bracket notation to access the property values.&lt;/p&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+var myObj, x;
+myObj = {&quot;name&quot;:&quot;John&quot;, &quot;age&quot;:30, &quot;car&quot;:null};
+for (x in myObj) {
+  document.getElementById(&quot;demo&quot;).innerHTML += myObj[x] + &quot;&lt;br&gt;&quot;;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>Alternatively, we could use the regular <strong>for</strong> loop.</p>
+<h3 id="json-data-types">JSON data types</h3>
+<p>Values must be a string, number, a JSON object, array, boolean, or null.</p>
+<p>We have seen examples of strings as values and numbers as values. Objects can also be values in a key/value pair. For example:</p>
+<pre><code>{
+&quot;employee&quot;:{ &quot;name&quot;:&quot;Shane&quot;, &quot;age&quot;:39, &quot;city&quot;:&quot;Los Angeles&quot; }
+} </code></pre>
+<p>The key “employee” returns an object with 3 keys: name, age and city.</p>
+<p>Values can also be arrays.</p>
+<pre><code>{
+&quot;students&quot;: [ &quot;Zed&quot;, &quot;Yasmin&quot;, &quot;Xavier&quot;, &quot;Willa&quot;]
+}</code></pre>
+<p>Values can be booleans</p>
+<pre><code>{
+&quot;graduated&quot;: false
+}</code></pre>
+<p>Lastly, values can be null.</p>
+<pre><code>{
+&quot;middle name&quot;: null
+}</code></pre>
+<pre><code>{
+    &quot;name&quot;:&quot;Cathy&quot;,
+    &quot;age&quot;:31,
+    &quot;pets&quot;:[
+        { &quot;animal&quot;:&quot;dog&quot;, &quot;name&quot;:&quot;Dodo&quot; },
+        { &quot;animal&quot;:&quot;cat&quot;, &quot;name&quot;:&quot;Frodo&quot; },
+        { &quot;animal&quot;:&quot;hamster&quot;, &quot;name&quot;:&quot;Bob&quot; }
+    ]
+}</code></pre>
+<h2 id="json-with-servers">JSON with servers</h2>
+<p>JSON is used for storing, sending and receiving data on servers.</p>
+<p>If you have data stored in a JavaScript object, you can convert the object into JSON, and send it to a server. In other words, you can save data by SENDing it to a server. (names, passwords, etc).</p>
+<p>If you receive data in JSON format, you can convert it into a JavaScript object. In other words, you can GET data from a server.</p>
+<p>JavaScript has the command <code>JSON.parse()</code> to turn JSON data into a Javascript object. By using this command, you can work with the data in your javascript code.</p>
+<p>Example data from a server:</p>
+<pre><code>&#39;{ &quot;name&quot;:&quot;Shane&quot;, &quot;age&quot;:39, &quot;city&quot;:&quot;Los Angeles&quot;}&#39;</code></pre>
+<p>We use json.parse() to turn it into a Javascript object. The text must be written with proper JSON syntax or you will get an error.</p>
+<pre><code>var obj = JSON.parse( &#39;{ &quot;name&quot;:&quot;Shane&quot;, &quot;age&quot;:39, &quot;city&quot;:&quot;Los Angeles&quot;}&#39; );</code></pre>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;Create Object from JSON String&lt;/h2&gt;
+
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+var txt = &#39;{&quot;name&quot;:&quot;Shane&quot;, &quot;age&quot;:39, &quot;city&quot;:&quot;Los Angeles&quot;}&#39;
+var obj = JSON.parse(txt);
+document.getElementById(&quot;demo&quot;).innerHTML = obj.name + &quot;, &quot; + obj.age;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h3 id="sending-data-to-a-server">Sending data to a server</h3>
+<p>We previously covered parsing text into a JSON object to get data from a server (to display on a website for example).</p>
+<p>To send data to a server, we need to convert the data into a string. We do this with JSON.stringify().</p>
+<p>Example</p>
+<pre><code>var obj = { name: &quot;Shane&quot;, age: 39, city: &quot;Los Angeles&quot; };
+
+var myJSON = JSON.stringify(obj);</code></pre>
+<h3 id="loading-json-file-with-jquery">Loading JSON file with Jquery</h3>
+<p>Jquery gives us methods to make it easier to work with JSON.</p>
+<p>A basic getJSON request is formatted as:</p>
+<pre><code>$.getJSON(url, data, success);</code></pre>
+<p>The url is local or remote. The <em>data</em> is optional, an object or strong sent to the server when requesting data, and success is an optional callback function to execute after the JSON request is successful.</p>
+<p>example</p>
+<pre><code>function success(data) {
+  // do something with data, which is an object
+}</code></pre>
+<h2 id="finishing-our-radio-project">Finishing our Radio Project</h2>
+<p>For next week, finish your radio project solo or in a small group.</p>
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li>Compelling design</li>
+<li>Mobile responsive design</li>
+<li>Uses data fed from an external json file</li>
+<li>Is capable of playing (and switching) radio stations</li>
+<li>Uses the webaudio API</li>
+</ul>
+<p>The goal of this project is to complete the creation of your own custom web app for a radio station player. The application should be a unique and compellingly designed radio player that presents the user with a number of stations to select from. Selecting a station should cause the station to begin playing, and any previously selected station should stop. Beyond this, you may add any additional details and design elements you require.</p>
+</body>
+</html>
