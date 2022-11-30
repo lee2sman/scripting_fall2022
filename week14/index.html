@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Week 14 - Working with data on a server</title>
+  <link rel='stylesheet' href='../assets/classless.css'>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+</head>
+<body>
+<h1 id="saving-data-to-a-server">Saving Data to a server</h1>
+<p>Today:<br />
+- check-in - saving and accessing data on a server - in-class studio time</p>
+<h1 id="saving-data-to-a-server-getting-data-from-a-server">Saving Data to a Server / Getting Data From A Server</h1>
+<p>For many of our projects, you may need to save data to a server, or get data from a server, or both.</p>
+<p>Json is a common way to organize and store our data.</p>
+<p>But to send data to a server, that data must be sent as a string of text.</p>
+<p>We can convert a javascript object with <code>JSON.stringify()</code></p>
+<h3 id="converting-json-to-text">Converting JSON to text</h3>
+<p>Example</p>
+<pre><code>var obj = { name: &quot;Shane&quot;, age: 39, city: &quot;Los Angeles&quot; };
+
+var myJSONAsString = JSON.stringify(obj);
+
+document.getElementById(&quot;demo&quot;).innerHTML = myJSON; 
+
+//or in jQuery
+//$(&#39;#demo).html(myJSON);</code></pre>
+<h3 id="working-with-the-file-system-using-node.js">Working with the file system using Node.js</h3>
+<p>Node.js comes with a builtin file system module to work with a computer’s file system, or for example on a server. It can <strong>read files, create files, edit files, delete files, and rename files.</strong></p>
+<p>To use it, we must import it.</p>
+<p>In Node.js we do this with the require statement.</p>
+<pre><code>let fs = require(&#39;fs&#39;); </code></pre>
+<p>Note: you may also see this written as <code>const fs = require('fs');</code></p>
+<h4 id="reading-a-file">Reading a file</h4>
+<p>We can read from a file saved on a server. This can be a text file or a json data file for example. We use the readfile module, part of <code>fs</code>.</p>
+<pre><code>fs.readFile()</code></pre>
+<p>Example</p>
+<p><strong>student.json</strong> file:</p>
+<pre><code>{
+  &quot;name&quot;: &quot;Jorge&quot;,
+  &quot;age&quot;: 45,
+  &quot;department&quot;: &quot;Math and Computer Science&quot;
+}</code></pre>
+<p><strong>script.js</strong> file</p>
+<pre><code>let fs = require(&#39;fs&#39;);
+
+fs.readFile(&#39;student.json&#39;, function(err,data) {  
+    if (err) throw err;
+    let student = JSON.parse(data);
+    console.log(student);
+});
+
+console.log(&#39;This is after the read call&#39;); </code></pre>
+<p>These two files are in the same directory. We can run our script with <code>node script.js</code></p>
+<p>Doing so will print out:</p>
+<pre><code>this is printed after the read call
+{ name: &#39;Jorge&#39;,
+age: 45,
+department: &#39;Math and computer Science&#39;}</code></pre>
+<p>Since Javascript is asynchronous, we start reading the student.json file, and we have a callback to run when finished. In the meantime, we print to the console in the last line of our script. Our readFile finally finishes and triggers the anonymous callback function that parses our student json data and prints it out.</p>
+<h4 id="writing-to-a-file">Writing to a file</h4>
+<p>You can create a new text file in the file system with <code>fs.writeFile()</code>. If the file already exists, it will overwire the previous content.</p>
+<p>You can also add text to the end of a file using <code>fs.appendFile()</code>. This has the advantage of not overwriting a file, and if it doesn’t already exist, it will create the file first.</p>
+<pre><code>let fs = require(&#39;fs&#39;);
+let myText = &quot;This text and the random number &quot;+Math.random()*100+&quot; will be added to the end of the file. &quot;;
+
+fs.appendFile(&#39;textFile.txt&#39;, myText, function (err) {
+  if (err) throw err;
+  console.log(&#39;Saved to textFile.txt!&#39;);
+});</code></pre>
+<p>Again, we can save this as a script file and run it with <code>node script.js</code> or whatever we’ve named the file.</p>
+<h3 id="resources">Resources</h3>
+<ul>
+<li>Node.js <a href="https://www.w3schools.com/nodejs/nodejs_filesystem.asp">File System</a> tutorial</li>
+<li>Node.js <a href="https://www.w3schools.com/nodejs/ref_modules.asp">modules</a></li>
+</ul>
+<h2 id="in-class-studio-time">In-class studio time</h2>
+<ul>
+<li>1-on-1 meetings</li>
+</ul>
+<h1 id="examples-projects">Examples projects</h1>
+<h2 id="website-web-app-examples-for-working-with-server">Website / web app examples for working with server</h2>
+<ul>
+<li><a href="http://touched-some1.com">touched-some1</a> - For Underneath The Skin - <em>notice minimal example saving to server and displaying simple saved data</em></li>
+<li><a href="http://follower.today">Follower</a> - art/performance project and commentary - <em>use of geolocation web app</em></li>
+<li><a href="http://binky.app">Binky</a> - App/Artwork - <em>web app using randomization. mobile responsive</em></li>
+<li><a href="http://somebodyapp.com">somebody app</a> - App/performance project. - <em>app using server to store users, data, match making</em></li>
+</ul>
+<h1 id="homework">Homework</h1>
+<p>Get a first prototype ready!</p>
+<p>Write a development log of half a page.</p>
+<ul>
+<li>What are/were your goals for the session?</li>
+<li>What did you spend your time on during your work session(s)?</li>
+<li>What worked?</li>
+<li>Where are you stuck?</li>
+<li>What are your next steps?</li>
+<li>How does this fit into the overall project idea so far?</li>
+</ul>
+</body>
+</html>
