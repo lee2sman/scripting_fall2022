@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Week 15 - Wrapup and Persistence</title>
+  <link rel='stylesheet' href='../assets/classless.css'>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+</head>
+<body>
+<h1 id="last-class">LAST CLASS!</h1>
+<p>Today:</p>
+<ul>
+<li>What have we covered this semester?</li>
+<li>Feedback for the professor</li>
+<li>Tips for future students</li>
+<li>What questions still remain?</li>
+<li>WORKSHOP: Data Persistence with Web Storage API</li>
+<li>field trip: New Media Junior Seminar exhibit: In-ter-Act</li>
+<li>1-on-1 time to work on final project</li>
+</ul>
+<h2 id="what-have-we-learned-in-this-course-review">What have we learned in this course?: Review</h2>
+<p><a href="https://leetusman.com/scripting_fall2022/syllabus/">Syllabus</a></p>
+<h3 id="learning-outcomes">Learning outcomes</h3>
+<ul>
+<li>a working knowledge of the underlying technology of the web and how to build websites and web applications on this platform</li>
+<li>knowledge of basic software design patterns for software for the web, including asynchronous versus synchronous programming, hosting, client versus server, and responsive design</li>
+<li>ability to demonstrate knowledge and application of a number of programming languages and contexts: Javascript, Node.js, the DOM, Linux systems, Version Control</li>
+<li>ability to create and deploy a node-based web application with interaction, data persistence and data/API queries</li>
+</ul>
+<h2 id="feedback-for-the-professor">Feedback for the professor</h2>
+<p>What worked well this semester?</p>
+<p>What could be improved when I teach this course next time?</p>
+<h2 id="tips-for-future-students">Tips for future students</h2>
+<p><a href="https://board.net/p/scripting_tips_for_future_students_2022">Anonymously written tips for future students of the course</a></p>
+<h1 id="workshop-data-persistence-with-web-storage-api">Workshop: Data Persistence with Web Storage API</h1>
+<p>Web storage was developed as an alternative to <em>cookies</em> and is a relatively more recent addition to JavaScript. It is specified as part of the browser specification, using a special API, letting you store and manipulate it with the DOM, which is why it is also called DOM Storage.</p>
+<p>You can only store <strong>strings of text</strong> with Web Storage. You can convert integers and json data to strings.</p>
+<h3 id="two-kinds-of-storage-time">Two kinds of storage time</h3>
+<p>You can store data to last continuously even when quitting the browser or you can store data for that browser session only. In other words, you can have data stored to last only while the web browser remains open, or you can have your data stored between sessions even after quitting and reopening the browser.</p>
+<p>Just like in JSON, we specify a name for our data (aka the ‘key’) and the value we want to set it to.</p>
+<pre><code>// Store value on browser for duration of a single session
+sessionStorage.setItem(&#39;key&#39;, &#39;value&#39;);
+
+// Store value on the browser even after closing
+localStorage.setItem(&#39;key&#39;, &#39;value&#39;);</code></pre>
+<p>Like working with external JSON files covered in our previous classes, you must convert json data to a string to store it.</p>
+<pre><code>// Store an object using JSON
+localStorage.setItem(&#39;key&#39;, JSON.stringify({name: &#39;value&#39;}));</code></pre>
+<p>JSON.stringify converts json data to a string of letters.</p>
+<p>You can access this stored data</p>
+<pre><code>console.log(sessionStorage.getItem(&#39;key&#39;));
+//results in &#39;value&#39;
+
+alert(JSON.parse(localStorage.getItem(&#39;key&#39;)).name); 
+// an alert box with &#39;value&#39; pops up</code></pre>
+<h3 id="everything-you-can-do-with-web-storage">Everything you can do with web storage</h3>
+<pre><code>setItem(): Add key and value to localStorage
+getItem(): This is how you get items from localStorage
+removeItem(): Remove an item by key from localStorage
+clear(): Clear all localStorage
+key(): Passed a number to retrieve the key of a localStorage</code></pre>
+<p>Don’t store passwords in local storage; it is considered insecure storage.</p>
+<p>What is localStorage good for? Storing your username, notes, to-do lists, a selected website theme.</p>
+<h3 id="example-app">Example app</h3>
+<pre><code>&lt;p&gt;Entered Name is : &lt;span id=&quot;name-placeholder&quot; &gt;&lt;/span&gt;&lt;/p&gt;
+&lt;input type=&quot;text&quot; id=&quot;name&quot; value=&quot;&quot; /&gt;
+&lt;hr /&gt;
+
+&lt;input type=&quot;button&quot; onclick=&quot;getName()&quot; value=&quot;Get Name&quot; /&gt;
+&lt;input type=&quot;button&quot; onclick=&quot;setName()&quot; value=&quot;Set Name&quot; /&gt;
+&lt;input type=&quot;button&quot; onclick=&quot;setName()&quot; value=&quot;Update Name&quot; /&gt;
+&lt;input type=&quot;button&quot; onclick=&quot;removeName()&quot; value=&quot;Remove Name&quot; /&gt;
+
+&lt;script&gt;
+    //The setName() with insert or update the name
+    function setName(){
+        window.localStorage.setItem(&quot;name&quot;, document.getElementById(&quot;name&quot;).value);
+        getName(); //this will fetch the new name value again
+    }
+
+    function getName(){
+        let name = window.localStorage.getItem(&quot;name&quot;); // getting value by key name
+        document.getElementById(&#39;name-placeholder&#39;).innerText = name
+    }
+
+    function removeName(){
+        window.localStorage.removeItem(&quot;name&quot;)
+        getName(); //this will fetch the new name value again
+    }
+
+    getName(); //Fetching the name on page load 
+&lt;/script&gt;</code></pre>
+<p>W3Schools info on <a href="https://www.w3schools.com/jsref/prop_win_localstorage.asp">Web Storage API</a></p>
+<h3 id="visit-inter-act">Visit Inter-Act</h3>
+<p><a href="../assets/interact.png">In-ter-act poster</a></p>
+<h1 id="final-project-worktime">Final Project worktime</h1>
+<blockquote>
+<p>This semester we have built websites for our class, (false) or misleading institutional websites, and a web-based time capsule. These sites have been collections of material: images, galleries, or institutional pages with lots of choices of what to navigate. They give a user multiple modes of entry and allow exploration. Now we are going to go small and concentrate on creating a site, app or extension for a single project or idea that we want to deliver to the world that will be delivered as a speculative work. We have had multiple discussions on contemporary issues relating to the web today, from companies tracking users’ every action, to the loss of privacy and the inability of many users to resist the compulsion to check their various feeds. How can you acknowledge this world and create a new intimacy with your website’s visitors? For this assignment you will make a mobile-responsive site or intervention (in the form of a web extension) that fundamentally alters our engagement with the Internet. The goal is to make a compelling site, app or extension with information, media, or other content but one that respects your user, plays with convention, or distorts a user’s expectations on the web. You are a unique individual and your work is too! You may deconstruct your project or even the idea of a website itself. Perhaps your site is playful, mysterious, a game, a poem? How can the website be a work of art?</p>
+</blockquote>
+<h2 id="goals">Goals</h2>
+<ul>
+<li>the site should be responsive - it must work well on the desktop and mobile browsers</li>
+<li>the site should have interactive elements - you may want to use javascript, jquery or P5js</li>
+<li>the design should be compelling and unique - no cookie cutter sites. Question what the site is, the conventions of such sites, and make it your own!</li>
+<li>the site should be well-executed and original</li>
+<li>Consider how your site works with data and APIs.</li>
+</ul>
+<p><strong>Final projects must be uploaded to the web by Wednesday December 14 at noon. Project presentations will be on Zoom on December 14 at 3PM.</strong></p>
+</body>
+</html>
